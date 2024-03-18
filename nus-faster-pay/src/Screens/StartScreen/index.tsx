@@ -6,7 +6,7 @@ function StartScreen() {
 
   return (
     <div>
-      <button onClick={() => navigate("/my-payments")}>Click to start!</button>
+      <button onClick={() => navigate("/account-dashboard", { state: ivConfig })}>Click to start!</button>
     </div>
   );
 }
