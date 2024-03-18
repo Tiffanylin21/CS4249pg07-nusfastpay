@@ -7,17 +7,21 @@ import QRCode from "./Screens/QRCode";
 import AccountDashbaord from "./Screens/AccountDashboard";
 import ShoppingCart from "./Screens/ShoppingCart";
 import CustomerDetails from "./Screens/CustomerDetails";
+import { NUSHeader } from "./Utils/SharedComponents";
 
 function App() {  
   return (
-    <Routes>
-      <Route path="/" element={<StartScreen />} />
-      <Route path="/account-dashboard" element={<AccountDashbaord />} />
-      <Route path="/shopping-cart" element={<ShoppingCart />} />
-      <Route path="/payment-options" element={<PaymentOptions />} />
-      <Route path="/customer-details" element={<CustomerDetails />} />
-      <Route path="/qr-code" element={<QRCode />} />
-    </Routes>
+    <div style={{ padding: "20px 100px 20px 100px" }}>
+      <NUSHeader></NUSHeader>
+      <Routes>
+        <Route path="/" element={<StartScreen />} />
+        <Route path="/account-dashboard" element={<AccountDashbaord />} />
+        <Route path="/shopping-cart" element={<ShoppingCart />} />
+        <Route path="/payment-options" element={<PaymentOptions />} />
+        <Route path="/customer-details" element={<CustomerDetails />} />
+        <Route path="/qr-code" element={<QRCode />} />
+      </Routes>
+    </div>
   );
 }
 

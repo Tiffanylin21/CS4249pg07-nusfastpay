@@ -4,14 +4,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 function PaymentOptions() {
   const navigate = useNavigate();
   const location = useLocation();
-  const data = location.state;
+  const ivConfig = location.state;
 
   return (
     <div>
         <p>
             Payment Options Screen
         </p>
-        <button onClick={() => navigate("/customer-details", { state: data })}>Next</button>
+        <button onClick={() => navigate("/customer-details", { state: ivConfig })}>Next</button>
     </div>
   );
 }

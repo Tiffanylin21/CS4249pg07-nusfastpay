@@ -1,18 +1,24 @@
-import React from 'react';
+import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function ShoppingCart() {
   const navigate = useNavigate();
   const location = useLocation();
-  const data = location.state;
+  const { item, ivConfig } = location.state;
 
   return (
     <div>
-        <p>
-            Shopping Cart Screen
-        </p>
-        <button onClick={() => navigate("/account-dashboard", { state: data })}>Back</button>
-        <button onClick={() => navigate("/payment-options", { state: data })}>Next</button>
+      <p>
+        Shopping Cart Screen for item: {item.title} - ${item.price}
+      </p>
+      <button
+        onClick={() => navigate("/account-dashboard", { state: ivConfig })}
+      >
+        Back
+      </button>
+      <button onClick={() => navigate("/payment-options", { state: ivConfig })}>
+        Next
+      </button>
     </div>
   );
 }
