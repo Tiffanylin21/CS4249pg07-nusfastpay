@@ -15,7 +15,6 @@ function StartScreen() {
   return (
     <div>
       {/* vvvvvv TO BE REMOVED --- this is to just make it easier for us to code and debug if needed!!! */}
-      <p>Start Screen</p>
       <div style={{ padding: '10px', border: '1px solid black'}}>
         <h3>Config IVs here for easier debugging</h3>
         <p>Payment Arrangement</p>

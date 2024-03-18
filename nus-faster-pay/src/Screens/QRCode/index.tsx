@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 function QRCode() {
   const navigate = useNavigate();
   const location = useLocation();
-  const data = location.state;
+  const ivConfig = location.state;
 
   return (
     <div>

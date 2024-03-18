@@ -15,7 +15,7 @@ const Container = styled.div`
 function AccountDashbaord() {
   const navigate = useNavigate();
   const location = useLocation();
-  const data = location.state;
+  const ivConfig = location.state;
 
   return (
     <Container>
@@ -27,7 +27,6 @@ function AccountDashbaord() {
                 <PaymentCard item={item} size={data.paymentCardSize} />
             )
         })}
-        <button onClick={() => navigate("/shopping-cart", { state: data })}>Next</button>
     </Container>
   );
 }

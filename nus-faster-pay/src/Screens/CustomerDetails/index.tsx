@@ -4,14 +4,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 function CustomerDetails() {
   const navigate = useNavigate();
   const location = useLocation();
-  const data = location.state;
+  const ivConfig = location.state;
 
   return (
     <div>
         <p>
             Customer Details Screen
         </p>
-        <button onClick={() => navigate("/qr-code", { state: data })}>Next</button>
+        <button onClick={() => navigate("/qr-code", { state: ivConfig })}>Next</button>
     </div>
   );
 }
