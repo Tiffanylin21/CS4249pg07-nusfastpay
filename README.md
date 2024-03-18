@@ -1,7 +1,7 @@
 # CS4249pg07-nusfastpay
 WebApp for CS4249 group 7 prototype for an improved NUSFastPay
 
-# Set-up
+## Set-up
 - Install `yarn`
 - Clone repo onto local environment
 - run `yarn` at root directory of cloned repo
