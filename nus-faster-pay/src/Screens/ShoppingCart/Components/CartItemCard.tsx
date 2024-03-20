@@ -19,8 +19,7 @@ export default function CartItemCard({ item }: CartItemCardProps) {
       <button
         onClick={() => {
           removeFromCart(item.title);
-          console.log(ivConfig);
-          navigate("/account-dashboard", { state: { ivConfig } }); // What's the behaviour after removing?
+          navigate("/account-dashboard", { state: ivConfig }); // What's the behaviour after removing?
         }}
       >
         Remove
