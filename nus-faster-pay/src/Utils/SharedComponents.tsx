@@ -45,7 +45,7 @@ export const Body = styled.text`
 export function NUSHeader() {
   return (
     <Container>
-      <Title>NUS Logo</Title>
+      <img src="./nus_logo_full-horizontal.jpg" alt="NUS Header">
     </Container>
   );
 }
