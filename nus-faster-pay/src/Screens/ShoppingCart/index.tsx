@@ -1,23 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { CartContext } from "../../Contexts/CartContext";
+import { paymentItems } from "../../Utils/Data";
+import CartItemCard from "./Components/CartItemCard";
 
 function ShoppingCart() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { cart, addToCart } = useContext(CartContext);
   const { item, ivConfig } = location.state;
+
+  addToCart(item.title);
+  const itemsInCart = paymentItems.filter((item) => cart.has(item.title));
 
   return (
     <div>
       <p>
         Shopping Cart Screen for item: {item.title} - ${item.price}
       </p>
+      <p>
+        This is a list of your payment selections. To proceed, please select
+        Process Payment. To add more items to your Fees Cart, please use the
+        menu option to navigate to Student Fees & Charges. With effect from 1
+        Jan 2024, a card/eWallet processing fee of 1% will be applied to all
+        payments made using Visa, MasterCard, Amex, or Alipay. No processing fee
+        is charged for using PayNow QR and Convera in NUSFastPay.
+      </p>
+      {itemsInCart.map((item, index) => {
+        return <CartItemCard item={item} />;
+      })}
+      <button onClick={() => navigate("/payment-options", { state: ivConfig })}>
+        Process Payment
+      </button>
       <button
         onClick={() => navigate("/account-dashboard", { state: ivConfig })}
       >
-        Back
-      </button>
-      <button onClick={() => navigate("/payment-options", { state: ivConfig })}>
-        Next
+        Continue Shopping
       </button>
     </div>
   );
