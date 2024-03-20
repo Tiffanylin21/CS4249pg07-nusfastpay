@@ -14,6 +14,7 @@ function ShoppingCart() {
 
   addToCart(item.title);
   const itemsInCart = paymentItems.filter((item) => cart.has(item.title));
+  const navBack = () => navigate("/account-dashboard", { state: ivConfig });
 
   return (
     <div>
@@ -27,7 +28,7 @@ function ShoppingCart() {
         is charged for using PayNow QR and Convera in NUSFastPay.
       </TextContainer>
       {itemsInCart.map((item, index) => {
-        return <CartItemCard item={item} />;
+        return <CartItemCard item={item} navBack={navBack} />;
       })}
       <div>
         <GrandTotal />
@@ -36,7 +37,7 @@ function ShoppingCart() {
         Process Payment
       </button>
       <button
-        onClick={() => navigate("/account-dashboard", { state: ivConfig })}
+        onClick={navBack}
       >
         Continue Shopping
       </button>

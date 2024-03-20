@@ -1,17 +1,14 @@
 import { useContext } from "react";
 import { PaymentItem } from "../../../Utils/Types";
 import { CartContext } from "../../../Contexts/CartContext";
-import { useLocation, useNavigate } from "react-router-dom";
 
 interface CartItemCardProps {
   item: PaymentItem;
+  navBack: () => void;
 }
 
-export default function CartItemCard({ item }: CartItemCardProps) {
+export default function CartItemCard({ item, navBack }: CartItemCardProps) {
   const { removeFromCart } = useContext(CartContext);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const ivConfig = location.state;
 
   return (
     <div>
@@ -19,7 +16,7 @@ export default function CartItemCard({ item }: CartItemCardProps) {
       <button
         onClick={() => {
           removeFromCart(item.title);
-          navigate("/account-dashboard", { state: ivConfig }); // What's the behaviour after removing?
+          navBack(); // What's the behaviour after removing?
         }}
       >
         Remove
