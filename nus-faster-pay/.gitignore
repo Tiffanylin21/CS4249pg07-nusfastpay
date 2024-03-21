@@ -25,7 +25,7 @@ yarn-error.log*
 # other files
 .editorconfig
 .gitattributes
-.yarnrc
+.yarnnrc.yml
 /.yarn
 /node_modules
 
