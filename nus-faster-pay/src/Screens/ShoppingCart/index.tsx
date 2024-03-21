@@ -5,6 +5,7 @@ import { paymentItems } from "../../Utils/Data";
 import CartItemCard from "./Components/CartItemCard";
 import { TextContainer, Title } from "../../Utils/SharedComponents";
 import GrandTotal from "./Components/GrandTotal";
+import "bootstrap/dist/css/bootstrap-grid.css";
 
 function ShoppingCart() {
   const navigate = useNavigate();
