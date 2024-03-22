@@ -10,10 +10,9 @@ import "bootstrap/dist/css/bootstrap-grid.css";
 function ShoppingCart() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cart, addToCart } = useContext(CartContext);
-  const { item, ivConfig } = location.state;
+  const { cart } = useContext(CartContext);
+  const { ivConfig } = location.state;
 
-  addToCart(item.title);
   const itemsInCart = paymentItems.filter((item) => cart.has(item.title));
   const navBack = () => navigate("/account-dashboard", { state: ivConfig });
 
@@ -29,7 +28,7 @@ function ShoppingCart() {
         is charged for using PayNow QR and Convera in NUSFastPay.
       </TextContainer>
       {itemsInCart.map((item, index) => {
-        return <CartItemCard item={item} navBack={navBack} />;
+        return <CartItemCard item={item} key={item.title} />;
       })}
       <div>
         <GrandTotal />
@@ -37,11 +36,7 @@ function ShoppingCart() {
       <button onClick={() => navigate("/payment-options", { state: ivConfig })}>
         Process Payment
       </button>
-      <button
-        onClick={navBack}
-      >
-        Continue Shopping
-      </button>
+      <button onClick={navBack}>Continue Shopping</button>
     </div>
   );
 }

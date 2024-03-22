@@ -1,26 +1,28 @@
 import { useContext } from "react";
 import { PaymentItem } from "../../../Utils/Types";
 import { CartContext } from "../../../Contexts/CartContext";
+import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 interface CartItemCardProps {
   item: PaymentItem;
-  navBack: () => void;
 }
 
-export default function CartItemCard({ item, navBack }: CartItemCardProps) {
+export default function CartItemCard({ item }: CartItemCardProps) {
+  const navigate = useNavigate();
   const { removeFromCart } = useContext(CartContext);
 
   return (
     <div>
       <p>{item.title}</p>
-      <button
+      <Button
         onClick={() => {
           removeFromCart(item.title);
-          navBack(); // What's the behaviour after removing?
+          navigate(0);
         }}
       >
         Remove
-      </button>
+      </Button>
     </div>
   );
 }
