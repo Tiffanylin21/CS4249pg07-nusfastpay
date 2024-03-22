@@ -8,13 +8,46 @@ export default function GrandTotal() {
   const { calculateTotal } = useContext(CartContext);
 
   return (
-    <Container>
-      <Row>
-        <Col></Col>
-        <Col></Col>
-        <Col>Grand Total</Col>
-        <Col>${calculateTotal().toFixed(2)}</Col>
-      </Row>
-    </Container>
+    <div>
+      <Container
+        style={{
+          border: "1px solid LightGray",
+          padding: "50px 0px 10px 0px",
+          margin: "20px 0px 20px 0px",
+        }}
+      >
+        <Row>
+          {/* image */}
+          <Col xs={2}></Col>
+          {/* title and name */}
+          <Col></Col>
+          {/* remove and price details */}
+          <Col xs={4}>
+            <Row>
+              <Row>
+                <Col
+                  style={{
+                    display: "flex",
+                    justifyContent: "right",
+                    padding: "0px",
+                  }}
+                >
+                  Grand Total
+                </Col>
+                <Col
+                  style={{
+                    display: "flex",
+                    justifyContent: "right",
+                    padding: "0px",
+                  }}
+                >
+                  ${calculateTotal().toFixed(2)}
+                </Col>
+              </Row>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 }
