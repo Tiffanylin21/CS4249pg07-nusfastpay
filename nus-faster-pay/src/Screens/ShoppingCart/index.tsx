@@ -3,10 +3,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../../Contexts/CartContext";
 import { paymentItems } from "../../Utils/Data";
 import CartItemCard from "./Components/CartItemCard";
-import { TextContainer, Title } from "../../Utils/SharedComponents";
+import {
+  OrangeButton,
+  TextContainer,
+  Title,
+} from "../../Utils/SharedComponents";
 import GrandTotal from "./Components/GrandTotal";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
-import "bootstrap/js/dist/button.js";
 
 function ShoppingCart() {
   const navigate = useNavigate();
@@ -56,13 +59,13 @@ function ShoppingCart() {
       })}
       <GrandTotal />
       <div style={{ display: "flex", justifyContent: "right" }}>
-        <button
+        <OrangeButton
           className="me-3"
           onClick={() => navigate("/payment-options", { state: ivConfig })}
         >
           Process Payment
-        </button>
-        <button onClick={navBack}>Continue Shopping</button>
+        </OrangeButton>
+        <OrangeButton onClick={navBack}>Continue Shopping</OrangeButton>
       </div>
     </div>
   );

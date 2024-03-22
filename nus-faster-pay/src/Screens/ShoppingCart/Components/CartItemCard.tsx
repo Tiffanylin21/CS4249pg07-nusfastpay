@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { PaymentItem } from "../../../Utils/Types";
 import { CartContext } from "../../../Contexts/CartContext";
-import Button from "react-bootstrap/Button"; // not working:(
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import image from "../Images/image.jpeg";
+import { OrangeButton } from "../../../Utils/SharedComponents";
 
 interface CartItemCardProps {
   item: PaymentItem;
@@ -49,24 +49,22 @@ export default function CartItemCard({
           {/* remove and price details */}
           <Col xs={4}>
             <Row>
-              <Row>
+              <Row style={{ padding: "0px 0px 10px 0px" }}>
                 <Col></Col>
                 <Col
                   style={{
                     display: "flex",
                     justifyContent: "right",
-                    padding: "10px 0px 0px 0px",
                   }}
                 >
-                  <Button
-                    className="mb-3 ms-3"
+                  <OrangeButton
                     onClick={() => {
                       removeFromCart(item.title);
                       updateItemsShown();
                     }}
                   >
                     Remove
-                  </Button>
+                  </OrangeButton>
                 </Col>
               </Row>
               <Row>
