@@ -57,7 +57,6 @@ function PaymentItemDetails() {
   const navigate = useNavigate();
   const location = useLocation();
   const { item, ivConfig } = location.state;
-  const [matricId, setMatricId] = React.useState("");
 
   const DESCRIPTIONONE =
     "For new students, please make payment at least 3 days after you have" +
@@ -67,6 +66,7 @@ function PaymentItemDetails() {
     "Please click here to access" +
     " Education Records System if you need more information on your outstanding" +
     " tuition and other miscellaneous student fees.";
+  const MATRICID = "A1234567E";
 
   const navBack = () => {
     navigate("/account-dashboard", { state: ivConfig });
@@ -76,21 +76,11 @@ function PaymentItemDetails() {
     navigate("/shopping-cart", { state: { item, ivConfig } });
   };
 
-  const validateMatricId = () => {
-    if (!matricId.match(/^[A][0-9]{7}[A-Z]$/)) {
-      alert("Please enter a valid Matric ID");
-      return false;
-    }
-    return true;
-  };
-
   const { addToCart } = useContext(CartContext);
 
   const handleAddToCart = () => {
-    if (validateMatricId()) {
-      addToCart(item.title);
-      navToShoppingCart();
-    }
+    addToCart(item.title);
+    navToShoppingCart();
   };
 
   return (
@@ -124,9 +114,8 @@ function PaymentItemDetails() {
           <MatricIDLabel>Matric ID *</MatricIDLabel>
           <InputTextField
             id="matricId"
-            value={matricId}
-            onChange={(e) => setMatricId(e.target.value)}
-            required
+            value={MATRICID}
+            disabled
           />
         </MatricIDContainer>
         <CenteredTextContainer>
