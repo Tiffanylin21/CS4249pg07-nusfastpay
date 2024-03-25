@@ -5,12 +5,12 @@ import {
   Title,
   TextContainer,
   Body,
-  OrangeButton,
-} from "../../Utils/SharedComponents";
+} from "../../Utils/StyledComponents";
 import { COLORS } from "../../Utils/Colors";
 import styled from "styled-components";
 import { useContext } from "react";
 import { CartContext } from "../../Contexts/CartContext";
+import { OrangeButton } from "../../Utils/components/OrangeButton";
 
 const CenteredTextContainer = styled.div`
   display: flex;

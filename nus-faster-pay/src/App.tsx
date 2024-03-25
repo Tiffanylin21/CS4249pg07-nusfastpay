@@ -7,13 +7,13 @@ import QRCode from "./Screens/QRCode";
 import AccountDashbaord from "./Screens/AccountDashboard";
 import ShoppingCart from "./Screens/ShoppingCart";
 import CustomerDetails from "./Screens/CustomerDetails";
-import { NUSHeader } from "./Utils/SharedComponents";
+import NUSHeader from "./Utils/components/NUSHeader";
 import PaymentItemDetails from "./Screens/PaymentItemDetails";
 
-function App() {  
+function App() {
   return (
     <div style={{ padding: "20px 100px 20px 100px" }}>
-      <NUSHeader></NUSHeader>
+      <NUSHeader />
       <Routes>
         <Route path="/" element={<StartScreen />} />
         <Route path="/account-dashboard" element={<AccountDashbaord />} />

@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import image from "../Images/image.jpeg";
-import { OrangeButton } from "../../../Utils/SharedComponents";
+import { OrangeButton } from "../../../Utils/components/OrangeButton";
 
 interface CartItemCardProps {
   item: PaymentItem;

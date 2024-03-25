@@ -41,23 +41,3 @@ export const Body = styled.text`
   textoverflow: "ellipsis";
   color: ${COLORS.black};
 `;
-
-export const OrangeButton = styled.button`
-  background-color: white;
-  color: orange;
-  padding: 8px 10px;
-  text-align: center;
-  border: 1px solid orange;
-  border-radius: 4px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export function NUSHeader() {
-  return (
-    <Container>
-      <img src="./nus_logo_full-horizontal.jpg" alt="NUS Header" />
-    </Container>
-  );
-}

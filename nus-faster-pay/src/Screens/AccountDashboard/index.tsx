@@ -2,7 +2,12 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { PaymentCard } from "./Components/PaymentCard";
 import { paymentItems } from "../../Utils/Data";
-import { Container, Title, TextContainer, Body } from "../../Utils/SharedComponents";
+import {
+  Container,
+  Title,
+  TextContainer,
+  Body,
+} from "../../Utils/StyledComponents";
 import { COLORS } from "../../Utils/Colors";
 
 function AccountDashbaord() {
