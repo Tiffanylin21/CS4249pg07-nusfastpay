@@ -39,7 +39,7 @@ export function PaymentCard({ item, size }: PaymentCardProps) {
   return (
     <Container
       size={size}
-      onClick={() => navigate("/shopping-cart", { state: { item, ivConfig } })}
+      onClick={() => navigate("/payment-item-details", { state: { item, ivConfig } })}
     >
       <Body>{item.title}</Body>
       <PriceArrowContainer>
