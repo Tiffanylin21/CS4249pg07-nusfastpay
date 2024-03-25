@@ -5,9 +5,12 @@ import {
   Title,
   TextContainer,
   Body,
+  OrangeButton,
 } from "../../Utils/SharedComponents";
 import { COLORS } from "../../Utils/Colors";
 import styled from "styled-components";
+import { useContext } from "react";
+import { CartContext } from "../../Contexts/CartContext";
 
 const CenteredTextContainer = styled.div`
   display: flex;
@@ -27,7 +30,7 @@ const SpacedBetweenTextContainer = styled.div`
 const ButtonsContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: right;
   padding: 12px;
 `;
 const MatricIDContainer = styled.div`
@@ -39,12 +42,11 @@ const MatricIDContainer = styled.div`
 `;
 
 const MatricIDLabel = styled.label`
-  flex-basis: 20%;
   padding: 10px;
 `;
 
 const InputTextField = styled.input`
-  flex-basis: 20%;
+  min-width: 0px;
   padding: 10px;
   margin-left: 20px;
   border: 1px solid #ccc;
@@ -82,8 +84,11 @@ function PaymentItemDetails() {
     return true;
   };
 
+  const { addToCart } = useContext(CartContext);
+
   const handleAddToCart = () => {
     if (validateMatricId()) {
+      addToCart(item.title);
       navToShoppingCart();
     }
   };
@@ -131,15 +136,19 @@ function PaymentItemDetails() {
           <Body>Payment Amount *</Body>
           <InputTextField
             id="paymentAmount"
-            value={'$' + item.price.toFixed(2)}
+            value={"$" + item.price.toFixed(2)}
             disabled
             style={{ textAlign: "right" }}
           />
         </SpacedBetweenTextContainer>
       </Container>
       <ButtonsContainer>
-        <button onClick={handleAddToCart}>Add to Fees and Charges Cart</button>
-        <button onClick={navBack}>Continue Shopping</button>
+        {item.price > 0 && (
+          <OrangeButton className="me-3" onClick={handleAddToCart}>
+            Add to Fees and Charges Cart
+          </OrangeButton>
+        )}
+        <OrangeButton onClick={navBack}>Continue Shopping</OrangeButton>
       </ButtonsContainer>
     </Container>
   );
