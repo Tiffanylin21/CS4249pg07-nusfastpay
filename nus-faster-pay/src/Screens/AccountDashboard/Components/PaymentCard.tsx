@@ -4,6 +4,8 @@ import { Body } from "../../../Utils/SharedComponents";
 import { COLORS } from "../../../Utils/Colors";
 import { RightArrow } from "./RightArrow";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../../../Contexts/CartContext";
 
 const Container = styled.div<{ size: PaymentCardSize }>`
   height: ${(props) =>
@@ -35,11 +37,17 @@ export function PaymentCard({ item, size }: PaymentCardProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const ivConfig = location.state;
+  const { addToCart } = useContext(CartContext);
 
   return (
     <Container
       size={size}
-      onClick={() => navigate("/shopping-cart", { state: { item, ivConfig } })}
+      onClick={() => {
+        if (item.price > 0) {
+          addToCart(item.title);
+          navigate("/shopping-cart", { state: { ivConfig } });
+        }
+      }}
     >
       <Body>{item.title}</Body>
       <PriceArrowContainer>
