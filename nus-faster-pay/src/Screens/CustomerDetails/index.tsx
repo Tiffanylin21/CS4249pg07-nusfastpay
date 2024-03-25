@@ -1,7 +1,8 @@
 import React, { useState, FormEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Body, OrangeButton, TextContainer, Title } from "../../Utils/SharedComponents";
+import { Body, TextContainer, Title } from "../../Utils/StyledComponents";
 import { COLORS } from "../../Utils/Colors";
+import { OrangeButton } from "../../Utils/components/OrangeButton";
 
 function CustomerDetails() {
   const navigate = useNavigate();
