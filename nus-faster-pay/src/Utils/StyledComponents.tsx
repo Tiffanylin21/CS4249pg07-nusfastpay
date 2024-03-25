@@ -42,10 +42,3 @@ export const Body = styled.text`
   color: ${COLORS.black};
 `;
 
-export function NUSHeader() {
-  return (
-    <Container>
-      <img src="./nus_logo_full-horizontal.jpg" alt="NUS Header" />
-    </Container>
-  );
-}

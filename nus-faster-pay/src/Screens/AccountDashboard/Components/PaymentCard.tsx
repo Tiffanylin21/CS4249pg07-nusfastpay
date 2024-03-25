@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { PaymentItem, PaymentCardSize } from "../../../Utils/Types";
-import { Body } from "../../../Utils/SharedComponents";
+import { Body } from "../../../Utils/StyledComponents";
 import { COLORS } from "../../../Utils/Colors";
 import { RightArrow } from "./RightArrow";
 import { useLocation, useNavigate } from "react-router-dom";
