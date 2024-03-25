@@ -41,4 +41,3 @@ export const Body = styled.text`
   textoverflow: "ellipsis";
   color: ${COLORS.black};
 `;
-
