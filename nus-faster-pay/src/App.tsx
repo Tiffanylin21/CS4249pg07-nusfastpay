@@ -8,6 +8,7 @@ import AccountDashbaord from "./Screens/AccountDashboard";
 import ShoppingCart from "./Screens/ShoppingCart";
 import CustomerDetails from "./Screens/CustomerDetails";
 import NUSHeader from "./Utils/components/NUSHeader";
+import PaymentItemDetails from "./Screens/PaymentItemDetails";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<StartScreen />} />
         <Route path="/account-dashboard" element={<AccountDashbaord />} />
+        <Route path="/payment-item-details" element={<PaymentItemDetails />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />
         <Route path="/payment-options" element={<PaymentOptions />} />
         <Route path="/customer-details" element={<CustomerDetails />} />

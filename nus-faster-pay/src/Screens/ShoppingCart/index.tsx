@@ -11,7 +11,7 @@ import { OrangeButton } from "../../Utils/components/OrangeButton";
 function ShoppingCart() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cart } = useContext(CartContext);
+  const { cart, calculateTotal } = useContext(CartContext);
   const { ivConfig } = location.state;
 
   const getPaymentItemsInCart = () => {
@@ -56,12 +56,12 @@ function ShoppingCart() {
       })}
       <GrandTotal />
       <div style={{ display: "flex", justifyContent: "right" }}>
-        <OrangeButton
+        {calculateTotal() !== 0 && <OrangeButton
           className="me-3"
           onClick={() => navigate("/payment-options", { state: ivConfig })}
         >
           Process Payment
-        </OrangeButton>
+        </OrangeButton>}
         <OrangeButton onClick={navBack}>Continue Shopping</OrangeButton>
       </div>
     </div>
