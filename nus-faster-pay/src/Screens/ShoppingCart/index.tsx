@@ -3,13 +3,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../../Contexts/CartContext";
 import { paymentItems } from "../../Utils/Data";
 import CartItemCard from "./Components/CartItemCard";
-import {
-  OrangeButton,
-  TextContainer,
-  Title,
-} from "../../Utils/SharedComponents";
+import { TextContainer, Title } from "../../Utils/StyledComponents";
 import GrandTotal from "./Components/GrandTotal";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
+import { OrangeButton } from "../../Utils/components/OrangeButton";
 
 function ShoppingCart() {
   const navigate = useNavigate();
