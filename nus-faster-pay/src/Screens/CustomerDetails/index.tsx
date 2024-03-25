@@ -9,12 +9,12 @@ function CustomerDetails() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/qr-code", { state: { ...ivConfig, email } });
+    navigate("/qr-code", { state: { ivConfig, email } });
   };
 
   // Handler for the Back button
   const handleBack = () => {
-    navigate(-1); // This will take the user back to the previous page in the history stack
+    navigate("/payment-options", { state: { ivConfig } });
   };
 
   return (
@@ -30,7 +30,6 @@ function CustomerDetails() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
             style={{
               width: '100%',
               padding: '10px',
