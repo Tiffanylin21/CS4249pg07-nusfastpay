@@ -17,7 +17,7 @@ function CustomerDetails() {
 
   // Handler for the Back button
   const handleBack = () => {
-    navigate("/payment-options", { state: { ivConfig } });
+    navigate("/payment-options", { state: ivConfig });
   };
 
   return (

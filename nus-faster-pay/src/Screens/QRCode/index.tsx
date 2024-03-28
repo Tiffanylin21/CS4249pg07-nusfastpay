@@ -16,7 +16,7 @@ function QRCode() {
   };
 
   const handleSelectDifferent = () => {
-    navigate("/payment-options", { state: { ivConfig } });
+    navigate("/payment-options", { state: ivConfig });
   };
 
   return (
