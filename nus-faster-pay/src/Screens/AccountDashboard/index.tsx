@@ -12,11 +12,16 @@ import { COLORS } from "../../Utils/Colors";
 function AccountDashbaord() {
   const location = useLocation();
   const ivConfig = location.state;
+  const DESCRIPTION = "For new students, please make payment at least 3 days after you have completed Registration Part One, as your student ID and fees will only be available in NUSfastPay at that time.";
 
   return (
     <Container>
       <TextContainer style={{ marginBottom: 10 }}>
         <Title>Account Dashboard</Title>
+          <br />
+          <br />
+          <br />
+          <Body style={{ textAlign: "center" }}>{DESCRIPTION}</Body>
       </TextContainer>
       <TextContainer
         style={{ backgroundColor: COLORS.darkGray, padding: "10px" }}
