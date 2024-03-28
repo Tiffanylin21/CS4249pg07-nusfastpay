@@ -14,7 +14,7 @@ const Container = styled.div<{ size: PaymentCardSize }>`
       : "120px"};
   padding: 10px;
   border-bottom: 1px solid ${COLORS.darkGray};
-  background: ${COLORS.lightGray};
+  background: ${COLORS.white};
   display: flex;
   align-items: center;
   justify-content: space-between;
