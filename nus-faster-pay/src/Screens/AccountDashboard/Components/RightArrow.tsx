@@ -1,6 +1,3 @@
-import styled from "styled-components";
-import { PaymentItem, PaymentCardSize } from "../../../Utils/Types";
-import { Subtitle, Body } from "../../../Utils/StyledComponents";
 import { COLORS } from "../../../Utils/Colors";
 
 export function RightArrow() {

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import payLahImage from "./images/pay_lah.jpg"; // Import the image correctly
 import { CartContext } from "../../Contexts/CartContext";

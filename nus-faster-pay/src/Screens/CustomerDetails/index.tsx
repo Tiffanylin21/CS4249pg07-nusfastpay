@@ -1,7 +1,6 @@
-import React, { useState, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Body, TextContainer, Title } from "../../Utils/StyledComponents";
-import { COLORS } from "../../Utils/Colors";
 import { OrangeButton } from "../../Utils/components/OrangeButton";
 
 function CustomerDetails() {

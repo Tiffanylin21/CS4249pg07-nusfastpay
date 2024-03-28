@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import payNowImage from './images/pay_now.jpg';
 import converaImage from './images/convera.jpg';

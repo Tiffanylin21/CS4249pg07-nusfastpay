@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { CartContext } from "../../Contexts/CartContext";
 import { paymentItems } from "../../Utils/Data";
@@ -20,6 +20,8 @@ function ShoppingCart() {
   };
 
   const isNumPaymentsFulfilled = cart.size === ivConfig.numOfPayment;
+
+  const isPaymentAmountValid = calculateTotal() > 0;
 
   const [itemsShown, setItemsShown] = useState(getPaymentItemsInCart);
   const navBack = () => navigate("/account-dashboard", { state: ivConfig });
@@ -66,7 +68,7 @@ function ShoppingCart() {
       })}
       <GrandTotal />
       <div style={{ display: "flex", justifyContent: "right" }}>
-        {calculateTotal() !== 0 && <OrangeButton
+        {isPaymentAmountValid && <OrangeButton
           className="me-3"
           onClick={handleProcessPayment}
         >
