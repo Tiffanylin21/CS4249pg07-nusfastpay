@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { PaymentCard } from "./Components/PaymentCard";
-import { paymentItems } from "../../Utils/Data";
+import { paymentItems, sortedPaymentItems } from "../../Utils/Data";
 import {
   Container,
   Title,
@@ -22,8 +22,11 @@ function AccountDashbaord() {
       <TextContainer style={{ backgroundColor: COLORS.darkGray, padding: "10px" }}>
           <Body style={{ marginBottom: 10, textAlign: 'center' }}>Student Account Balances</Body>
       </TextContainer>
-      {paymentItems.map((item, index) => {
-      return <PaymentCard item={item} size={ivConfig.paymentCardSize} />;
+      {(ivConfig.paymentArrangement === "default"
+        ? paymentItems
+        : sortedPaymentItems
+      ).map((item, index) => {
+        return <PaymentCard item={item} size={ivConfig.paymentCardSize} />;
       })}
     </Container>
   );

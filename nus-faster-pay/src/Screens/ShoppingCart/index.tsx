@@ -19,6 +19,8 @@ function ShoppingCart() {
     return paymentItems.filter((item) => cart.has(item.title));
   };
 
+  const isNumPaymentsFulfilled = cart.size === ivConfig.numOfPayment;
+
   const [itemsShown, setItemsShown] = useState(getPaymentItemsInCart);
   const navBack = () => navigate("/account-dashboard", { state: ivConfig });
 
@@ -26,6 +28,14 @@ function ShoppingCart() {
     // updates itemsShown state
     setItemsShown(getPaymentItemsInCart());
   };
+
+  const handleProcessPayment = () => {
+    if (!isNumPaymentsFulfilled) {
+      alert(`Please select ${ivConfig.numOfPayment} payment item${ivConfig.numOfPayment === 1 ? "" : "s"}`);
+      return;
+    }
+    navigate("/payment-options", { state: ivConfig });
+  }
 
   return (
     <div>
@@ -58,7 +68,7 @@ function ShoppingCart() {
       <div style={{ display: "flex", justifyContent: "right" }}>
         {calculateTotal() !== 0 && <OrangeButton
           className="me-3"
-          onClick={() => navigate("/payment-options", { state: ivConfig })}
+          onClick={handleProcessPayment}
         >
           Process Payment
         </OrangeButton>}

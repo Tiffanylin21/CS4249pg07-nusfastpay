@@ -5,11 +5,11 @@ function StartScreen() {
   const navigate = useNavigate();
   const [paymentArrangement, setPaymentArrangement] = React.useState("default");
   const [paymentCardSize, setPaymentCardSize] = React.useState("small");
-  const [navigationBarNaming, setNavigationBarNaming] = React.useState("original");
+  const [numOfPayment, setNumOfPayment] = React.useState(1);
   const ivConfig = {
     paymentArrangement,
     paymentCardSize,
-    navigationBarNaming
+    numOfPayment
   };
 
   return (
@@ -28,10 +28,10 @@ function StartScreen() {
           <option value="medium">Medium</option>
           <option value="large">Large</option>
         </select>
-        <p>Navigation Bar Naming</p>
-        <select value={navigationBarNaming} onChange={(e) => setNavigationBarNaming(e.target.value)}>
-          <option value="original">Original</option>
-          <option value="new">New</option>
+        <p>Number of Payments</p>
+        <select value={numOfPayment} onChange={(e) => setNumOfPayment(parseInt(e.target.value))}>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
         </select>
       </div>
       {/* ^^^^^ TO BE REMOVED --- this is to just make it easier for us to code and debug if needed!!! */}
