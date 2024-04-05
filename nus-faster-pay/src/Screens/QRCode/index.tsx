@@ -7,8 +7,9 @@ import { OrangeButton } from "../../Utils/components/OrangeButton";
 function QRCode() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { ivConfig, email } = location.state; // Ensure a fallback for ivConfig to an empty object
+  const { ivConfig } = location.state; // Ensure a fallback for ivConfig to an empty object
   const { calculateTotal } = useContext(CartContext);
+  const EMAIL = "marylim@gmail.com"
 
   // Handlers for button actions
   const handleBack = () => {
@@ -38,7 +39,7 @@ function QRCode() {
           <strong>Amount</strong> ${calculateTotal().toFixed(2)}
         </div>
         <div>
-          <strong>Email</strong> {email || "No email provided"}
+          <strong>Email</strong> {EMAIL}
         </div>{" "}
         {/* Display the passed email or a placeholder */}
       </div>

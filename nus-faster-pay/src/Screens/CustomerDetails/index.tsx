@@ -14,7 +14,7 @@ function CustomerDetails() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/qr-code", { state: { ivConfig, EMAIL } });
+    navigate("/qr-code", { state: { ivConfig } });
   };
 
   // Handler for the Back button
