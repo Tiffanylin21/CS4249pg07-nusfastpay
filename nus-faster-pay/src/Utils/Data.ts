@@ -10,7 +10,7 @@ export const paymentItems: PaymentItem[] = [
   },
   {
     title: "Library Fees",
-    description: "NUS Mug",
+    description: "Library Book Loan Fees",
     price: 0.0,
     quantity: 1,
     deadline: "2024-02-01",
@@ -21,6 +21,13 @@ export const paymentItems: PaymentItem[] = [
     price: 1000.00,
     quantity: 1,
     deadline: "2024-02-10",
+  },
+  {
+    title: "Season Parking Fees",
+    description: "Student Open (KRC)",
+    price: 35.00,
+    quantity: 1,
+    deadline: "2024-02-15",
   }
 ];
 
@@ -40,10 +47,17 @@ export const sortedPaymentItems: PaymentItem[] = [
     deadline: "2024-02-10",
   },
   {
+    title: "Season Parking Fees",
+    description: "Student Open (KRC)",
+    price: 35.00,
+    quantity: 1,
+    deadline: "2024-02-15",
+  },
+  {
     title: "Library Fees",
     description: "NUS Mug",
     price: 0.0,
     quantity: 1,
     deadline: "2024-02-01",
-  },
+  }
 ];

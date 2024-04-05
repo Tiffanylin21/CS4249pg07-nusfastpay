@@ -31,7 +31,7 @@ function StartScreen() {
         <p>Number of Payments</p>
         <select value={numOfPayment} onChange={(e) => setNumOfPayment(parseInt(e.target.value))}>
           <option value={1}>1</option>
-          <option value={2}>2</option>
+          <option value={3}>3</option>
         </select>
       </div>
       {/* ^^^^^ TO BE REMOVED --- this is to just make it easier for us to code and debug if needed!!! */}
