@@ -9,6 +9,7 @@ import ShoppingCart from "./Screens/ShoppingCart";
 import CustomerDetails from "./Screens/CustomerDetails";
 import NUSHeader from "./Utils/components/NUSHeader";
 import PaymentItemDetails from "./Screens/PaymentItemDetails";
+import StartTrial from "./Screens/StartTrial";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <NUSHeader />
       <Routes>
         <Route path="/" element={<StartScreen />} />
+        <Route path="/start-trial" element={<StartTrial />} />
         <Route path="/account-dashboard" element={<AccountDashbaord />} />
         <Route path="/payment-item-details" element={<PaymentItemDetails />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />

@@ -11,7 +11,7 @@ function PaymentOptions() {
   const navigate = useNavigate();
   const location = useLocation();
   const ivConfig = location.state;
-  const { cart, calculateTotal } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
 
   const handleImageClick = () => {
     navigate("/customer-details", { state: ivConfig });
@@ -23,7 +23,7 @@ function PaymentOptions() {
 
   return (
     <div>
-        <CartBar cartSize={cart.size} totalPayment={calculateTotal()} navToShoppingCart={navToShoppingCart} />
+        <CartBar cartSize={cart.size} navToShoppingCart={navToShoppingCart} />
         <p>Payment Options Screen</p>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
           <div style={{ flex: 1, minWidth: '150px', maxWidth: '250px' }}>

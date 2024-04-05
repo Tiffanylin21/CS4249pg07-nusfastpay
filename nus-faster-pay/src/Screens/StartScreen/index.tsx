@@ -15,26 +15,43 @@ function StartScreen() {
   const isValidIvCodeRegex = /^[AB]#[ABC]#[AB]$/;
   const handleStart = () => {
     if (isValidIvCodeRegex.test(ivConfigCode)) {
-      const [paymentArrangementCode, paymentCardSizeCode, numOfPaymentCode] = ivConfigCode.split("#");
-      const paymentArrangement = paymentArrangementCode === "A" ? "default" : "outstanding";
-      const paymentCardSize = paymentCardSizeCode === "A" ? "small" : paymentCardSizeCode === "B" ? "medium" : "large";
+      const [
+        accessibilityOfPriceInfoCode,
+        paymentCardSizeCode,
+        numOfPaymentCode,
+      ] = ivConfigCode.split("#");
+      const accessibilityOfPriceInfo =
+        accessibilityOfPriceInfoCode === "A" ? "not shown" : "shown";
+      const paymentCardSize =
+        paymentCardSizeCode === "A"
+          ? "small"
+          : paymentCardSizeCode === "B"
+          ? "medium"
+          : "large";
       const numOfPayment = numOfPaymentCode === "A" ? 1 : 3;
-      navigate("/account-dashboard", { state: {
-        paymentArrangement,
+      const ivConfig = {
+        accessibilityOfPriceInfo,
         paymentCardSize,
-        numOfPayment
-      } })
+        numOfPayment,
+      };
+      navigate("/start-trial", { state: ivConfig });
     } else {
       alert("Invalid IV Config Code");
     }
-  }
+  };
 
   return (
-    <div style={{ padding: '10px' }}>
+    <div style={{ padding: "10px" }}>
       <InputContainer>
         <h3>Please enter the given trial code here:</h3>
-        <input name="IV Config Code" value={ivConfigCode} onChange={(e) => setIvConfigCode(e.target.value)} required style={{ width: "80%", marginBottom: 30 }} />
-        <OrangeButton onClick={handleStart}>Click to start!</OrangeButton>
+        <input
+          name="IV Config Code"
+          value={ivConfigCode}
+          onChange={(e) => setIvConfigCode(e.target.value)}
+          required
+          style={{ width: "80%", marginBottom: 30 }}
+        />
+        <OrangeButton onClick={handleStart}>Next</OrangeButton>
       </InputContainer>
     </div>
   );

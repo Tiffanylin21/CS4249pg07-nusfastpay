@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { PaymentItem, PaymentCardSize } from "../../../Utils/Types";
 import { Body } from "../../../Utils/StyledComponents";
 import { COLORS } from "../../../Utils/Colors";
-import { RightArrow } from "./RightArrow";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../../../Contexts/CartContext";
+import { ReactComponent as Tick } from "../../../Utils/images/charm_tick.svg";
 
 const Container = styled.div<{ size: PaymentCardSize }>`
   height: ${(props) =>
@@ -26,26 +27,47 @@ const PriceArrowContainer = styled.div`
   justify-content: space-between;
 `;
 
+const AddedToCartContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 10px;
+`;
+
+const AddToCartText = styled.text`
+  font-size: 0.75em;
+  overflow: "hidden";
+  whitespace: "nowrap";
+  textoverflow: "ellipsis";
+  color: ${COLORS.black};
+  margin-left: 5px;
+  margin-right: 5px;
+`;
+
 interface PaymentCardProps {
   item: PaymentItem;
   size: PaymentCardSize;
+  isPriceShown: boolean;
+  handleAddToCart: () => void;
 }
 
-export function PaymentCard({ item, size }: PaymentCardProps) {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const ivConfig = location.state;
+export function PaymentCard({ item, size, isPriceShown, handleAddToCart }: PaymentCardProps) {
+  const { cart } = useContext(CartContext);
 
   return (
-    <Container
-      size={size}
-      onClick={() => navigate("/payment-item-details", { state: { item, ivConfig } })}
-    >
+    <Container size={size} onClick={handleAddToCart}>
       <Body>{item.title}</Body>
-      <PriceArrowContainer>
-        <Body>${item.price.toFixed(2)}</Body>
-        <RightArrow />
-      </PriceArrowContainer>
+        {isPriceShown && 
+          <PriceArrowContainer>
+            {cart.has(item.title) && (
+              <AddedToCartContainer>
+                <Tick />
+                <AddToCartText>Added to Cart</AddToCartText>
+              </AddedToCartContainer>
+            )}
+            <Body>${item.price.toFixed(2)}</Body>
+          </PriceArrowContainer>
+        }
     </Container>
   );
 }

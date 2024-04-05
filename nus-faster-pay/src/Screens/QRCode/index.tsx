@@ -1,24 +1,11 @@
 import { useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import payLahImage from "./images/pay_lah.jpg"; // Import the image correctly
 import { CartContext } from "../../Contexts/CartContext";
-import { OrangeButton } from "../../Utils/components/OrangeButton";
+import { COLORS } from "../../Utils/Colors";
 
 function QRCode() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { ivConfig } = location.state; // Ensure a fallback for ivConfig to an empty object
   const { calculateTotal } = useContext(CartContext);
   const EMAIL = "marylim@gmail.com"
-
-  // Handlers for button actions
-  const handleBack = () => {
-    navigate("/account-dashboard", { state: ivConfig });
-  };
-
-  const handleSelectDifferent = () => {
-    navigate("/payment-options", { state: ivConfig });
-  };
 
   return (
     <div
@@ -30,6 +17,7 @@ function QRCode() {
         padding: "20px",
       }}
     >
+      <h1 style={{ color: COLORS.success, textAlign:"center" }}>You have come to the end of the trail!</h1>
       <h2>PayNow</h2>
       <div style={{ marginBottom: "20px" }}>
         <div>
@@ -53,29 +41,11 @@ function QRCode() {
         Please scan the QR code with your mobile banking app to complete the
         payment. This page will be updated when payment is complete.
       </p>
-      <div style={{ position: "relative", maxWidth: "90%", height: "auto" }}>
-        <img
-          src={payLahImage}
-          alt="PayLah QR Code"
-          style={{ width: "100%", height: "auto" }}
-        />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          width: "100%",
-          marginTop: "20px",
-        }}
-      >
-        <OrangeButton className="mb-3" onClick={handleSelectDifferent}>
-          Select a different payment method
-        </OrangeButton>
-        <OrangeButton onClick={handleBack}>
-          Cancel payment
-        </OrangeButton>
-      </div>
+      <img
+        src={payLahImage}
+        alt="PayLah QR Code"
+        style={{ width: "40%", height: "auto" }}
+      />
     </div>
   );
 }

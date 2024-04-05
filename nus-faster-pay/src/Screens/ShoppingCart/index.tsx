@@ -42,7 +42,7 @@ function ShoppingCart() {
 
   return (
     <div>
-      <CartBar cartSize={cart.size} totalPayment={calculateTotal()} />
+      <CartBar cartSize={cart.size} />
       <Title>Fees and Charges Cart</Title>
       <TextContainer
         style={{ borderBottom: "1px solid LightGray", paddingBottom: "40px" }}
