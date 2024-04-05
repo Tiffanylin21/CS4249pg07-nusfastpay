@@ -15,7 +15,7 @@ export const COLORS = {
     darkestGray: "#686868",
     
     error: "#F53838", //this is a shade of red.
-    success: "#31F762", //this is a shade of green.
+    success: "#17A32E", //this is a shade of green.
     warning: "#FF0400", //this is bright red.
     
     info: "#0015ff", //this is a bright blue.
