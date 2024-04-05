@@ -10,6 +10,7 @@ import styled from "styled-components";
 import { useContext } from "react";
 import { CartContext } from "../../Contexts/CartContext";
 import { OrangeButton } from "../../Utils/components/OrangeButton";
+import CartBar from "../../Utils/components/CartBar";
 
 const CenteredTextContainer = styled.div`
   display: flex;
@@ -65,7 +66,7 @@ function PaymentItemDetails() {
     "Please click here to access" +
     " Education Records System if you need more information on your outstanding" +
     " tuition and other miscellaneous student fees.";
-  const MATRICID = "A1234567E";
+  const MATRICID = "A0000000Z";
 
   const navBack = () => {
     navigate("/account-dashboard", { state: ivConfig });
@@ -75,7 +76,7 @@ function PaymentItemDetails() {
     navigate("/shopping-cart", { state: { item, ivConfig } });
   };
 
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, cart, calculateTotal } = useContext(CartContext);
 
   const handleAddToCart = () => {
     addToCart(item.title);
@@ -83,7 +84,8 @@ function PaymentItemDetails() {
   };
 
   return (
-    <Container>
+    <div>
+      <CartBar cartSize={cart.size} totalPayment={calculateTotal()} navToShoppingCart={navToShoppingCart} />
       <TextContainer style={{ marginBottom: 10 }}>
         <Title>{item.title}</Title>
       </TextContainer>
@@ -138,7 +140,7 @@ function PaymentItemDetails() {
         )}
         <OrangeButton onClick={navBack}>Continue Shopping</OrangeButton>
       </ButtonsContainer>
-    </Container>
+    </div>
   );
 }
 

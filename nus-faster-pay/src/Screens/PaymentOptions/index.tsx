@@ -3,18 +3,27 @@ import payNowImage from './images/pay_now.jpg';
 import converaImage from './images/convera.jpg';
 import invoiceImage from './images/invoice.jpg';
 import mastercardImage from './images/mastercard.jpg';
+import CartBar from "../../Utils/components/CartBar";
+import { useContext } from "react";
+import { CartContext } from "../../Contexts/CartContext";
 
 function PaymentOptions() {
   const navigate = useNavigate();
   const location = useLocation();
   const ivConfig = location.state;
+  const { cart, calculateTotal } = useContext(CartContext);
 
   const handleImageClick = () => {
     navigate("/customer-details", { state: ivConfig });
   };
 
+  const navToShoppingCart = () => {
+    navigate("/shopping-cart", { state: { ivConfig } });
+  }
+
   return (
     <div>
+        <CartBar cartSize={cart.size} totalPayment={calculateTotal()} navToShoppingCart={navToShoppingCart} />
         <p>Payment Options Screen</p>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
           <div style={{ flex: 1, minWidth: '150px', maxWidth: '250px' }}>
