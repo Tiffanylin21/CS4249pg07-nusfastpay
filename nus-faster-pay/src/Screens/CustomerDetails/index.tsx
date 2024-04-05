@@ -1,13 +1,16 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Body, TextContainer, Title } from "../../Utils/StyledComponents";
 import { OrangeButton } from "../../Utils/components/OrangeButton";
+import CartBar from "../../Utils/components/CartBar";
+import { CartContext } from "../../Contexts/CartContext";
 
 function CustomerDetails() {
   const navigate = useNavigate();
   const location = useLocation();
   const ivConfig = location.state;
   const [email, setEmail] = useState(""); // State to hold the email input
+  const { cart, calculateTotal } = useContext(CartContext);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,28 +22,29 @@ function CustomerDetails() {
     navigate("/payment-options", { state: ivConfig });
   };
 
+  const navToShoppingCart = () => {
+    navigate("/shopping-cart", { state: { ivConfig } });
+  };
+
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
         justifyContent: "center",
       }}
     >
+      <CartBar cartSize={cart.size} totalPayment={calculateTotal()} navToShoppingCart={navToShoppingCart} />
       <TextContainer style={{ alignSelf: "start" }}>
         <Title>Customer Details</Title>
-        <br/>
-        <Body style={{ marginBottom: 10, textAlign: 'center' }}>
-          If you wish to have a receipt emailed to you following payment, provide
-          your email address here.
+        <br />
+        <Body style={{ marginBottom: 10, textAlign: "center" }}>
+          If you wish to have a receipt emailed to you following payment,
+          provide your email address here.
         </Body>
       </TextContainer>
 
-      <form
-        onSubmit={handleSubmit}
-        style={{ width: "80%", padding: 30}}
-      >
+      <form onSubmit={handleSubmit} style={{ width: "80%", padding: 30 }}>
         <label
           htmlFor="email"
           style={{ display: "block", marginBottom: "10px" }}
@@ -61,16 +65,10 @@ function CustomerDetails() {
           }}
         />
         <div style={{ display: "flex", justifyContent: "right" }}>
-          <OrangeButton
-            className="me-3"
-            type="submit"
-          >
+          <OrangeButton className="me-3" type="submit">
             Continue
           </OrangeButton>
-          <OrangeButton
-            type="button"
-            onClick={handleBack}
-          >
+          <OrangeButton type="button" onClick={handleBack}>
             Select a different payment method
           </OrangeButton>
         </div>

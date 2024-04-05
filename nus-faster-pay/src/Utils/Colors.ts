@@ -9,8 +9,10 @@ export const COLORS = {
     white: "#FFFFFF",
     gray: "#B3B3B3", //30% gray
     
-    lightGray: "#F5F5F5", // 4% gray
+    lightestGray: "#F5F5F5", // 4% gray
+    lightGray: "#E9E9E9",
     darkGray: "#D9D9D9", // 15% gray
+    darkestGray: "#686868",
     
     error: "#F53838", //this is a shade of red.
     success: "#31F762", //this is a shade of green.

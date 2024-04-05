@@ -1,21 +1,29 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PaymentCard } from "./Components/PaymentCard";
 import { paymentItems, sortedPaymentItems } from "../../Utils/Data";
 import {
-  Container,
   Title,
   TextContainer,
   Body,
 } from "../../Utils/StyledComponents";
 import { COLORS } from "../../Utils/Colors";
+import CartBar from "../../Utils/components/CartBar";
+import { useContext } from "react";
+import { CartContext } from "../../Contexts/CartContext";
 
 function AccountDashbaord() {
+  const navigate = useNavigate();
   const location = useLocation();
   const ivConfig = location.state;
   const DESCRIPTION = "For new students, please make payment at least 3 days after you have completed Registration Part One, as your student ID and fees will only be available in NUSfastPay at that time.";
+  const { cart, calculateTotal } = useContext(CartContext);
+  const navToShoppingCart = () => {
+    navigate("/shopping-cart", { state: { ivConfig } });
+  };
 
   return (
-    <Container>
+    <div>
+      <CartBar cartSize={cart.size} totalPayment={calculateTotal()} navToShoppingCart={navToShoppingCart} />
       <TextContainer style={{ marginBottom: 10 }}>
         <Title>Account Dashboard</Title>
           <br />
@@ -36,7 +44,7 @@ function AccountDashbaord() {
       ).map((item, index) => {
         return <PaymentCard item={item} size={ivConfig.paymentCardSize} />;
       })}
-    </Container>
+    </div>
   );
 }
 

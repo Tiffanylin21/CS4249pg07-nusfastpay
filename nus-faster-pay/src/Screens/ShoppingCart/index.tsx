@@ -7,6 +7,7 @@ import { TextContainer, Title } from "../../Utils/StyledComponents";
 import GrandTotal from "./Components/GrandTotal";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 import { OrangeButton } from "../../Utils/components/OrangeButton";
+import CartBar from "../../Utils/components/CartBar";
 
 function ShoppingCart() {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ function ShoppingCart() {
 
   return (
     <div>
+      <CartBar cartSize={cart.size} totalPayment={calculateTotal()} />
       <Title>Fees and Charges Cart</Title>
       <TextContainer
         style={{ borderBottom: "1px solid LightGray", paddingBottom: "40px" }}
