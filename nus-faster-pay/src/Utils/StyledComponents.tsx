@@ -15,6 +15,7 @@ export const TextContainer = styled.div`
 // TEXT
 export const Title = styled.text`
   font-size: 24px;
+  font-weight: bold;
   text-align: left;
   overflow: "hidden";
   whitespace: "nowrap";
