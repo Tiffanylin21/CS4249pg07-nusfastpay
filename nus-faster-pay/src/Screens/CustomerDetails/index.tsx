@@ -9,12 +9,12 @@ function CustomerDetails() {
   const navigate = useNavigate();
   const location = useLocation();
   const ivConfig = location.state;
-  const [email, setEmail] = useState(""); // State to hold the email input
   const { cart, calculateTotal } = useContext(CartContext);
+  const EMAIL = "marylim@gmail.com"
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/qr-code", { state: { ivConfig, email } });
+    navigate("/qr-code", { state: { ivConfig, EMAIL } });
   };
 
   // Handler for the Back button
@@ -54,8 +54,8 @@ function CustomerDetails() {
         <input
           id="email"
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={EMAIL}
+          disabled
           style={{
             width: "100%",
             padding: "10px",
