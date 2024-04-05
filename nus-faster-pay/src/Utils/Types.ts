@@ -5,14 +5,14 @@ export interface PaymentItem {
     quantity: number;
     deadline: string;
 }
-export type PaymentArrangement = 'default' | 'outstanding';
+export type accessibilityOfPriceInfo = 'not shown' | 'shown';
 
 export type PaymentCardSize = 'small' | 'medium' | 'large';
 
 export type NavigationBarNaming = 'original' | 'new';
 
 export interface IVConfig {
-    paymentArrangement: PaymentArrangement;
+    accessibilityOfPriceInfo: accessibilityOfPriceInfo;
     paymentCardSize: PaymentCardSize;
     navigationBarNaming: NavigationBarNaming;
 }

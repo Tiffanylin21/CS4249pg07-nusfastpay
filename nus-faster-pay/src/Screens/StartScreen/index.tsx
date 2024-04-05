@@ -15,10 +15,13 @@ function StartScreen() {
   const isValidIvCodeRegex = /^[AB]#[ABC]#[AB]$/;
   const handleStart = () => {
     if (isValidIvCodeRegex.test(ivConfigCode)) {
-      const [paymentArrangementCode, paymentCardSizeCode, numOfPaymentCode] =
-        ivConfigCode.split("#");
-      const paymentArrangement =
-        paymentArrangementCode === "A" ? "default" : "outstanding";
+      const [
+        accessibilityOfPriceInfoCode,
+        paymentCardSizeCode,
+        numOfPaymentCode,
+      ] = ivConfigCode.split("#");
+      const accessibilityOfPriceInfo =
+        accessibilityOfPriceInfoCode === "A" ? "not shown" : "shown";
       const paymentCardSize =
         paymentCardSizeCode === "A"
           ? "small"
@@ -26,7 +29,11 @@ function StartScreen() {
           ? "medium"
           : "large";
       const numOfPayment = numOfPaymentCode === "A" ? 1 : 3;
-      const ivConfig = {paymentArrangement, paymentCardSize, numOfPayment}
+      const ivConfig = {
+        accessibilityOfPriceInfo,
+        paymentCardSize,
+        numOfPayment,
+      };
       navigate("/start-trial", { state: ivConfig });
     } else {
       alert("Invalid IV Config Code");

@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { FilledOrangeButton } from "./FilledOrangeButton";
+import { useContext } from "react";
+import { CartContext } from "../../Contexts/CartContext";
 
 const Container = styled.div`
   display: flex;
@@ -9,19 +11,18 @@ const Container = styled.div`
 
 interface CartBarProps {
   cartSize: number;
-  totalPayment: number;
   navToShoppingCart?: () => void;
 }
 
 export default function CartBar({
-  cartSize,
   navToShoppingCart,
 }: CartBarProps) {
+  const { cart } = useContext(CartContext);
 
   return (
     <Container>
       <FilledOrangeButton onClick={navToShoppingCart}>
-        {`Cart: ${cartSize} Item(s)`}
+        {`Cart: ${cart.size} Item(s)`}
       </FilledOrangeButton>
     </Container>
   );

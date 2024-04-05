@@ -9,7 +9,7 @@ function CustomerDetails() {
   const navigate = useNavigate();
   const location = useLocation();
   const ivConfig = location.state;
-  const { cart, calculateTotal } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
   const EMAIL = "marylim@gmail.com"
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -34,7 +34,7 @@ function CustomerDetails() {
         justifyContent: "center",
       }}
     >
-      <CartBar cartSize={cart.size} totalPayment={calculateTotal()} navToShoppingCart={navToShoppingCart} />
+      <CartBar cartSize={cart.size} navToShoppingCart={navToShoppingCart} />
       <TextContainer style={{ alignSelf: "start" }}>
         <Title>Customer Details</Title>
         <br />

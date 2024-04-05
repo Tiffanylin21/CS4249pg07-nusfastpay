@@ -31,12 +31,10 @@ function StartTrial() {
     navigate("/account-dashboard", { state: ivConfig });
   };
 
-  console.log(ivConfig);
-
   const TASK_DESCRIPTION =
     ivConfig.numOfPayment === 1
-      ? "Make payment for “Education Records System Tuition Fees” ($6287.20) via PayNow QR Code."
-      : 'Make payment for “Education Records System Tuition Fees” ($6287.20), "Student Housing Fees" ($1000.00) and "Season Parking Fees" ($35.00) via PayNow QR Code.';
+      ? "Make payment for “Education Records System Tuition Fees” ($4000.00) via PayNow QR Code."
+      : 'Make payment for “Education Records System Tuition Fees” ($4000.00), "Student Housing Fees" ($3000.00) and "Season Parking Fees" ($350.00) via PayNow QR Code.';
 
   return (
     <Container>

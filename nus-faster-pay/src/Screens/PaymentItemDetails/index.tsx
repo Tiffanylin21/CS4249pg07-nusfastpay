@@ -76,7 +76,7 @@ function PaymentItemDetails() {
     navigate("/shopping-cart", { state: { item, ivConfig } });
   };
 
-  const { addToCart, cart, calculateTotal } = useContext(CartContext);
+  const { addToCart, cart } = useContext(CartContext);
 
   const handleAddToCart = () => {
     addToCart(item.title);
@@ -85,7 +85,7 @@ function PaymentItemDetails() {
 
   return (
     <div>
-      <CartBar cartSize={cart.size} totalPayment={calculateTotal()} navToShoppingCart={navToShoppingCart} />
+      <CartBar cartSize={cart.size} navToShoppingCart={navToShoppingCart} />
       <TextContainer style={{ marginBottom: 10 }}>
         <Title>{item.title}</Title>
       </TextContainer>

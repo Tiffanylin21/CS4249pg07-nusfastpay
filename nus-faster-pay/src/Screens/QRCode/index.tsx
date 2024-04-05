@@ -17,7 +17,7 @@ function QRCode() {
         padding: "20px",
       }}
     >
-      <h1 style={{ color: COLORS.success }}>You have come to the end of the trail!</h1>
+      <h1 style={{ color: COLORS.success, textAlign:"center" }}>You have come to the end of the trail!</h1>
       <h2>PayNow</h2>
       <div style={{ marginBottom: "20px" }}>
         <div>
