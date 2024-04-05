@@ -26,13 +26,8 @@ function StartScreen() {
           ? "medium"
           : "large";
       const numOfPayment = numOfPaymentCode === "A" ? 1 : 3;
-      navigate("/account-dashboard", {
-        state: {
-          paymentArrangement,
-          paymentCardSize,
-          numOfPayment,
-        },
-      });
+      const ivConfig = {paymentArrangement, paymentCardSize, numOfPayment}
+      navigate("/start-trial", { state: ivConfig });
     } else {
       alert("Invalid IV Config Code");
     }
