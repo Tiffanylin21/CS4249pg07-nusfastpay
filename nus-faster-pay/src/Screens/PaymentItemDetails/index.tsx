@@ -66,7 +66,7 @@ function PaymentItemDetails() {
     "Please click here to access" +
     " Education Records System if you need more information on your outstanding" +
     " tuition and other miscellaneous student fees.";
-  const MATRICID = "A1234567E";
+  const MATRICID = "A0000000Z";
 
   const navBack = () => {
     navigate("/account-dashboard", { state: ivConfig });
