@@ -14,7 +14,7 @@ function AccountDashboard() {
   const location = useLocation();
   const { cart, ivConfig, startTime } = location.state;
   
-  const totalClicks = useClickTracker();
+  useClickTracker();
   const DESCRIPTION =
     "For new students, please make payment at least 3 days after you have completed Registration Part One, as your student ID and fees will only be available in NUSfastPay at that time.";
   const [key, setKey] = useState(0);

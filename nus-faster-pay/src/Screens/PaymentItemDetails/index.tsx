@@ -58,7 +58,7 @@ function PaymentItemDetails() {
   const location = useLocation();
   // const { cart, item, ivConfig } = location.state;
   const { cart, ivConfig, item, startTime } = location.state;
-  const totalClicks = useClickTracker();
+  useClickTracker();
 
   const DESCRIPTIONONE =
     "For new students, please make payment at least 3 days after you have" +

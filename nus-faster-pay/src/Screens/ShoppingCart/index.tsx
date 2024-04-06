@@ -14,7 +14,7 @@ function ShoppingCart() {
   const navigate = useNavigate();
   const location = useLocation();
   const { cart, ivConfig, startTime } = location.state;
-  const totalClicks = useClickTracker();
+  useClickTracker();
   const getPaymentItemsInCart = () => {
     // returns a list of payment items that are in cart
     return paymentItems.filter((item) => cart.has(item.title));

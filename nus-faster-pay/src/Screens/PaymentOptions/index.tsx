@@ -11,7 +11,7 @@ function PaymentOptions() {
   const location = useLocation();
   // const { cart, ivConfig } = location.state;
   const { cart, ivConfig, startTime } = location.state;
-  const totalClicks = useClickTracker();
+  useClickTracker();
 
   const handleImageClick = () => {
     navigate("/customer-details", { state: { cart, ivConfig, startTime } });
