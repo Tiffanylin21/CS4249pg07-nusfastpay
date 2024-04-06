@@ -13,7 +13,7 @@ import useClickTracker from '../../Utils/methods/useClickTracker';
 function ShoppingCart() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cart, ivConfig, startTime, totalClicks: initialTotalClicks } = location.state;
+  const { cart, ivConfig, startTime } = location.state;
   const totalClicks = useClickTracker();
   const getPaymentItemsInCart = () => {
     // returns a list of payment items that are in cart
@@ -35,7 +35,7 @@ function ShoppingCart() {
 
   const [itemsShown, setItemsShown] = useState(getPaymentItemsInCart);
   const navBack = () =>
-    navigate("/account-dashboard", { state: { cart, ivConfig, startTime, totalClicks } });
+    navigate("/account-dashboard", { state: { cart, ivConfig, startTime } });
 
   const updateItemsShown = () => {
     // updates itemsShown state
@@ -47,7 +47,7 @@ function ShoppingCart() {
       alert(`Task requirements not fulfilled. Your current task requires you to perform the following: \n${ivConfig.trial.description}\n You may also check the Qualtrics survey for the correct payment items to select at any point in time.`);
       return;
     }
-    navigate("/payment-options", { state: { cart, ivConfig, startTime, totalClicks } });
+    navigate("/payment-options", { state: { cart, ivConfig, startTime } });
   };
 
   return (

@@ -12,7 +12,7 @@ import useClickTracker from '../../Utils/methods/useClickTracker';
 function AccountDashboard() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cart, ivConfig, startTime, totalClicks: initialTotalClicks } = location.state;
+  const { cart, ivConfig, startTime } = location.state;
   
   const totalClicks = useClickTracker();
   const DESCRIPTION =
@@ -21,12 +21,12 @@ function AccountDashboard() {
 
 
   const navToShoppingCart = () => {
-    navigate("/shopping-cart", { state: { cart, ivConfig, startTime, totalClicks } });
+    navigate("/shopping-cart", { state: { cart, ivConfig, startTime } });
   };
 
   const handleClick = (item: PaymentItem) => {
     if (ivConfig.accessibilityOfPriceInfo === "not shown") {
-      navigate("/payment-item-details", {  state: { cart, item, ivConfig, startTime, totalClicks }  });
+      navigate("/payment-item-details", {  state: { cart, item, ivConfig, startTime }  });
     } else if (cart.has(item.title)) {
       removeFromCart(cart, item.title);
       setKey(key + 1);

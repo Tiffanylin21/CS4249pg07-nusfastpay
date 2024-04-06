@@ -57,7 +57,7 @@ function PaymentItemDetails() {
   const navigate = useNavigate();
   const location = useLocation();
   // const { cart, item, ivConfig } = location.state;
-  const { cart, ivConfig, item, startTime, totalClicks: initialTotalClicks } = location.state;
+  const { cart, ivConfig, item, startTime } = location.state;
   const totalClicks = useClickTracker();
 
   const DESCRIPTIONONE =
@@ -71,11 +71,11 @@ function PaymentItemDetails() {
   const MATRICID = "A0000000Z";
 
   const navBack = () => {
-    navigate("/account-dashboard", { state: { cart, ivConfig, startTime, totalClicks } });
+    navigate("/account-dashboard", { state: { cart, ivConfig, startTime } });
   };
 
   const navToShoppingCart = () => {
-    navigate("/shopping-cart", { state: { cart, item, ivConfig, startTime, totalClicks } });
+    navigate("/shopping-cart", { state: { cart, item, ivConfig, startTime } });
   };
 
   const handleAddToCart = () => {

@@ -10,15 +10,15 @@ function PaymentOptions() {
   const navigate = useNavigate();
   const location = useLocation();
   // const { cart, ivConfig } = location.state;
-  const { cart, ivConfig, startTime, totalClicks: initialTotalClicks } = location.state;
+  const { cart, ivConfig, startTime } = location.state;
   const totalClicks = useClickTracker();
 
   const handleImageClick = () => {
-    navigate("/customer-details", { state: { cart, ivConfig, startTime, totalClicks } });
+    navigate("/customer-details", { state: { cart, ivConfig, startTime } });
   };
 
   const navToShoppingCart = () => {
-    navigate("/shopping-cart", { state: { cart, ivConfig, startTime, totalClicks } });
+    navigate("/shopping-cart", { state: { cart, ivConfig, startTime } });
   };
 
   return (

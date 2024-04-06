@@ -8,7 +8,7 @@ import useClickTracker from '../../Utils/methods/useClickTracker';
 function CustomerDetails() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cart, ivConfig, startTime, totalClicks: initialTotalClicks } = location.state;
+  const { cart, ivConfig, startTime } = location.state;
   const totalClicks = useClickTracker();
   const EMAIL = "marylim@gmail.com";
 
@@ -19,11 +19,11 @@ function CustomerDetails() {
 
   // Handler for the Back button
   const handleBack = () => {
-    navigate("/payment-options", { state: { cart, ivConfig, startTime, totalClicks } });
+    navigate("/payment-options", { state: { cart, ivConfig, startTime } });
   };
 
   const navToShoppingCart = () => {
-    navigate("/shopping-cart", { state: { cart, ivConfig, startTime, totalClicks } });
+    navigate("/shopping-cart", { state: { cart, ivConfig, startTime } });
   };
 
   return (
