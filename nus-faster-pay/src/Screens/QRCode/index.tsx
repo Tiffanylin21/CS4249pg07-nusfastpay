@@ -19,7 +19,7 @@ function QRCode() {
   //     console.log(`Total time taken: ${totalTimeTakenInSeconds} seconds`);
   //   }
   // }, [startTime]);
-
+  // console.log(ivConfig.ivConfigCode);
   useEffect(() => {
     if (startTime) {
       const endTime = new Date();
@@ -27,6 +27,7 @@ function QRCode() {
       const totalTimeTakenInSeconds = totalTimeTaken / 1000;
   
       axios.post('http://localhost:5000/updateSheet', {
+        configCode: ivConfig.ivConfigCode, // Add this line to include the ivConfigCode
         totalClicks: initialTotalClicks,
         totalTimeTakenInSeconds: totalTimeTakenInSeconds,
       })
@@ -39,8 +40,8 @@ function QRCode() {
   
       console.log(`Total time taken: ${totalTimeTakenInSeconds} seconds`);
     }
-  }, [startTime, initialTotalClicks]);
-
+  }, [startTime, initialTotalClicks, ivConfig.ivConfigCode]); // Make sure to add ivConfig.ivConfigCode to the dependency array
+  
   
   return (
     <div
