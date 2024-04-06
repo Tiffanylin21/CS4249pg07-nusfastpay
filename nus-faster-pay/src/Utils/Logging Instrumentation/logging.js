@@ -178,30 +178,58 @@ return {
 // error-prone process, it can be easier to use googlesender.py.
 //
 /////////////////////////////////////////////////////////////////////////////
+//"e/1FAIpQLScblldacOf3-BnDYM1FlVEL60PHs_x8_2yoqwLNVqmNarzX7A"
+https://docs.google.com/forms/d/e/1FAIpQLSc0JbBDg4r-NUlB5_bAUU5qrHk-lyUt_VZ25f0MzHm39yARgA/viewform?usp=sf_link
+// function sendNetworkLog(
+//     uid,
+//     time,
+//     eventName,
+//     target,
+//     info,
+//     state,
+//     log_version) {
+//   var formid = "e/1FAIpQLScblldacOf3-BnDYM1FlVEL60PHs_x8_2yoqwLNVqmNarzX7A";
+//   var data = {
+//     "entry.1213174370": uid,
+//     "entry.1557365071": time,
+//     "entry.2063334899": eventName,
+//     "entry.787942568": target,
+//     "entry.251233848": info,
+//     "entry.94462225": state,
+//     "entry.1473081078": log_version
+//   };
+//   var params = [];
+//   for (key in data) {
+//     params.push(key + "=" + encodeURIComponent(data[key]));
+//   }
+//   // Submit the form using an image to avoid CORS warnings; warning may still happen, but log will be sent. Go check result in Google Form
+//   (new Image).src = "https://docs.google.com/forms/d/" + formid +
+//      "/formResponse?" + params.join("&");
+// }
 
 function sendNetworkLog(
-    uid,
-    time,
-    eventName,
-    target,
-    info,
-    state,
-    log_version) {
-  var formid = "e/1FAIpQLScblldacOf3-BnDYM1FlVEL60PHs_x8_2yoqwLNVqmNarzX7A";
-  var data = {
-    "entry.1213174370": uid,
-    "entry.1557365071": time,
-    "entry.2063334899": eventName,
-    "entry.787942568": target,
-    "entry.251233848": info,
-    "entry.94462225": state,
-    "entry.1473081078": log_version
-  };
-  var params = [];
-  for (key in data) {
-    params.push(key + "=" + encodeURIComponent(data[key]));
-  }
-  // Submit the form using an image to avoid CORS warnings; warning may still happen, but log will be sent. Go check result in Google Form
-  (new Image).src = "https://docs.google.com/forms/d/" + formid +
-     "/formResponse?" + params.join("&");
+  uid,
+  time,
+  eventname,
+  target,
+  info,
+  state,
+  log_version) {
+var formid = "e/1FAIpQLSc0JbBDg4r-NUlB5_bAUU5qrHk-lyUt_VZ25f0MzHm39yARgA";
+var data = {
+  "entry.479164757": uid,
+  "entry.1313279743": time,
+  "entry.1800129744": eventname,
+  "entry.480741885": target,
+  "entry.1810891196": info,
+  "entry.860380070": state,
+  "entry.1621744843": log_version
+};
+var params = [];
+for (key in data) {
+  params.push(key + "=" + encodeURIComponent(data[key]));
+}
+// Submit the form using an image to avoid CORS warnings; warning may still happen, but log will be sent. Go check result in Google Form
+(new Image).src = "https://docs.google.com/forms/d/" + formid +
+   "/formResponse?" + params.join("&");
 }
