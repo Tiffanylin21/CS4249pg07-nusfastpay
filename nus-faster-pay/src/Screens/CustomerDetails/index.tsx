@@ -1,29 +1,27 @@
-import { FormEvent, useContext } from "react";
+import { FormEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Body, TextContainer, Title } from "../../Utils/StyledComponents";
 import { OrangeButton } from "../../Utils/components/OrangeButton";
 import CartBar from "../../Utils/components/CartBar";
-import { CartContext } from "../../Contexts/CartContext";
 
 function CustomerDetails() {
   const navigate = useNavigate();
   const location = useLocation();
-  const ivConfig = location.state;
-  const { cart } = useContext(CartContext);
-  const EMAIL = "marylim@gmail.com"
+  const { cart, ivConfig } = location.state;
+  const EMAIL = "marylim@gmail.com";
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/qr-code", { state: { ivConfig } });
+    navigate("/qr-code", { state: { cart, ivConfig } });
   };
 
   // Handler for the Back button
   const handleBack = () => {
-    navigate("/payment-options", { state: ivConfig });
+    navigate("/payment-options", { state: { cart, ivConfig } });
   };
 
   const navToShoppingCart = () => {
-    navigate("/shopping-cart", { state: { ivConfig } });
+    navigate("/shopping-cart", { state: { cart, ivConfig } });
   };
 
   return (

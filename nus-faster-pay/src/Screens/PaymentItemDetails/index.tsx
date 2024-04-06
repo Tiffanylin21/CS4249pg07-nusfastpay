@@ -7,10 +7,9 @@ import {
 } from "../../Utils/StyledComponents";
 import { COLORS } from "../../Utils/Colors";
 import styled from "styled-components";
-import { useContext } from "react";
-import { CartContext } from "../../Contexts/CartContext";
 import { OrangeButton } from "../../Utils/components/OrangeButton";
 import CartBar from "../../Utils/components/CartBar";
+import { addToCart } from "../../Utils/methods/CartMethods";
 
 const CenteredTextContainer = styled.div`
   display: flex;
@@ -56,7 +55,7 @@ const InputTextField = styled.input`
 function PaymentItemDetails() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { item, ivConfig } = location.state;
+  const { cart, item, ivConfig } = location.state;
 
   const DESCRIPTIONONE =
     "For new students, please make payment at least 3 days after you have" +
@@ -69,17 +68,15 @@ function PaymentItemDetails() {
   const MATRICID = "A0000000Z";
 
   const navBack = () => {
-    navigate("/account-dashboard", { state: ivConfig });
+    navigate("/account-dashboard", { state: { cart, ivConfig } });
   };
 
   const navToShoppingCart = () => {
-    navigate("/shopping-cart", { state: { item, ivConfig } });
+    navigate("/shopping-cart", { state: { cart, item, ivConfig } });
   };
 
-  const { addToCart, cart } = useContext(CartContext);
-
   const handleAddToCart = () => {
-    addToCart(item.title);
+    addToCart(cart, item.title);
     navToShoppingCart();
   };
 
@@ -113,11 +110,7 @@ function PaymentItemDetails() {
         </TextContainer>
         <MatricIDContainer>
           <MatricIDLabel>Matric ID *</MatricIDLabel>
-          <InputTextField
-            id="matricId"
-            value={MATRICID}
-            disabled
-          />
+          <InputTextField id="matricId" value={MATRICID} disabled />
         </MatricIDContainer>
         <CenteredTextContainer>
           <Body>Debit Balance: ${item.price.toFixed(2)}</Body>

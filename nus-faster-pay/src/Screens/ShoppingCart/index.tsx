@@ -1,6 +1,5 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { CartContext } from "../../Contexts/CartContext";
 import { paymentItems } from "../../Utils/Data";
 import CartItemCard from "./Components/CartItemCard";
 import { TextContainer, Title } from "../../Utils/StyledComponents";
@@ -8,12 +7,12 @@ import GrandTotal from "./Components/GrandTotal";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 import { OrangeButton } from "../../Utils/components/OrangeButton";
 import CartBar from "../../Utils/components/CartBar";
+import { calculateTotal } from "../../Utils/methods/CartMethods";
 
 function ShoppingCart() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cart, calculateTotal } = useContext(CartContext);
-  const { ivConfig } = location.state;
+  const { cart, ivConfig } = location.state;
 
   const getPaymentItemsInCart = () => {
     // returns a list of payment items that are in cart
@@ -22,10 +21,11 @@ function ShoppingCart() {
 
   const isNumPaymentsFulfilled = cart.size === ivConfig.numOfPayment;
 
-  const isPaymentAmountValid = calculateTotal() > 0;
+  const isPaymentAmountValid = calculateTotal(cart) > 0;
 
   const [itemsShown, setItemsShown] = useState(getPaymentItemsInCart);
-  const navBack = () => navigate("/account-dashboard", { state: ivConfig });
+  const navBack = () =>
+    navigate("/account-dashboard", { state: { cart, ivConfig } });
 
   const updateItemsShown = () => {
     // updates itemsShown state
@@ -34,11 +34,15 @@ function ShoppingCart() {
 
   const handleProcessPayment = () => {
     if (!isNumPaymentsFulfilled) {
-      alert(`Please select ${ivConfig.numOfPayment} payment item${ivConfig.numOfPayment === 1 ? "" : "s"}`);
+      alert(
+        `Please select ${ivConfig.numOfPayment} payment item${
+          ivConfig.numOfPayment === 1 ? "" : "s"
+        }`
+      );
       return;
     }
-    navigate("/payment-options", { state: ivConfig });
-  }
+    navigate("/payment-options", { state: { cart, ivConfig } });
+  };
 
   return (
     <div>
@@ -62,20 +66,20 @@ function ShoppingCart() {
       {itemsShown.map((item, _) => {
         return (
           <CartItemCard
+            cart={cart}
             item={item}
             key={item.title}
             updateItemsShown={updateItemsShown}
           />
         );
       })}
-      <GrandTotal />
+      <GrandTotal cartTotal={calculateTotal(cart)} />
       <div style={{ display: "flex", justifyContent: "right" }}>
-        {isPaymentAmountValid && <OrangeButton
-          className="me-3"
-          onClick={handleProcessPayment}
-        >
-          Process Payment
-        </OrangeButton>}
+        {isPaymentAmountValid && (
+          <OrangeButton className="me-3" onClick={handleProcessPayment}>
+            Process Payment
+          </OrangeButton>
+        )}
         <OrangeButton onClick={navBack}>Continue Shopping</OrangeButton>
       </div>
     </div>

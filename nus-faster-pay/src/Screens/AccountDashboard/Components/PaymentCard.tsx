@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { PaymentItem, PaymentCardSize } from "../../../Utils/Types";
 import { Body } from "../../../Utils/StyledComponents";
 import { COLORS } from "../../../Utils/Colors";
-import { useContext } from "react";
-import { CartContext } from "../../../Contexts/CartContext";
 import { ReactComponent as Tick } from "../../../Utils/images/charm_tick.svg";
 
 const Container = styled.div<{ size: PaymentCardSize }>`
@@ -48,26 +46,31 @@ interface PaymentCardProps {
   item: PaymentItem;
   size: PaymentCardSize;
   isPriceShown: boolean;
+  itemInCart: boolean;
   handleAddToCart: () => void;
 }
 
-export function PaymentCard({ item, size, isPriceShown, handleAddToCart }: PaymentCardProps) {
-  const { cart } = useContext(CartContext);
-
+export function PaymentCard({
+  item,
+  size,
+  isPriceShown,
+  itemInCart,
+  handleAddToCart,
+}: PaymentCardProps) {
   return (
     <Container size={size} onClick={handleAddToCart}>
       <Body>{item.title}</Body>
-        {isPriceShown && 
-          <PriceArrowContainer>
-            {cart.has(item.title) && (
-              <AddedToCartContainer>
-                <Tick />
-                <AddToCartText>Added to Cart</AddToCartText>
-              </AddedToCartContainer>
-            )}
-            <Body>${item.price.toFixed(2)}</Body>
-          </PriceArrowContainer>
-        }
+      {isPriceShown && (
+        <PriceArrowContainer>
+          {itemInCart && (
+            <AddedToCartContainer>
+              <Tick />
+              <AddToCartText>Added to Cart</AddToCartText>
+            </AddedToCartContainer>
+          )}
+          <Body>${item.price.toFixed(2)}</Body>
+        </PriceArrowContainer>
+      )}
     </Container>
   );
 }
