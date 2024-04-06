@@ -15,10 +15,9 @@ export type accessibilityOfPriceInfo = 'not shown' | 'shown';
 
 export type PaymentCardSize = 'small' | 'medium' | 'large';
 
-export type NavigationBarNaming = 'original' | 'new';
 
 export interface IVConfig {
     accessibilityOfPriceInfo: accessibilityOfPriceInfo;
     paymentCardSize: PaymentCardSize;
-    navigationBarNaming: NavigationBarNaming;
+    trial: Trial;
 }

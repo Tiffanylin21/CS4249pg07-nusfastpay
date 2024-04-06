@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { OrangeButton } from "../../Utils/components/OrangeButton";
 import styled from "styled-components";
 import { getTrial } from "../../Utils/Data";
+import { IVConfig, PaymentCardSize } from "../../Utils/Types";
 
 const InputContainer = styled.div`
   display: flex;
@@ -23,17 +24,17 @@ function StartScreen() {
       ] = ivConfigCode.split("#");
       const accessibilityOfPriceInfo =
         accessibilityOfPriceInfoCode === "A" ? "not shown" : "shown";
-      const paymentCardSize =
+      const paymentCardSize: PaymentCardSize =
         paymentCardSizeCode === "A"
           ? "small"
           : paymentCardSizeCode === "B"
           ? "medium"
           : "large";
       const trial = getTrial(trialCode);
-      const ivConfig = {
-        accessibilityOfPriceInfo,
-        paymentCardSize,
-        trial,
+      const ivConfig: IVConfig = {
+        accessibilityOfPriceInfo: accessibilityOfPriceInfo,
+        paymentCardSize: paymentCardSize,
+        trial: trial,
       };
       navigate("/start-trial", { state: ivConfig });
     } else {
