@@ -110,28 +110,75 @@ function getUniqueId() {
   return localStorage['uid'];
 }
 
+// // Log the given event.
+// function logEvent(event, customName, customInfo) {
+	
+// 	console.log('event', event, 'customName', customName, 'customInfo', customInfo);
+	
+//   var time = (new Date).getTime();
+//   var eventName = customName || event.type;
+//   // By default, monitor some global state on every event.
+//   var infoObj = GLOBAL_STATE_TO_LOG();
+//   // And monitor a few interesting fields from the event, if present.
+//   for (var key in EVENT_PROPERTIES_TO_LOG) {
+// 	if (event && key in event) {
+//       infoObj[key] = event[key];
+//     }
+//   }
+//   // Let a custom event add fields to the info.
+//   if (customInfo) {
+//     infoObj = Object.assign(infoObj, customInfo);
+//   }
+//   var info = JSON.stringify(infoObj);
+//   var target = document;
+//   if (event) {target = elementDesc(event.target);}
+//   var state = location.hash;
+
+//   if (ENABLE_CONSOLE_LOGGING) {
+//     console.log(uid, time, eventName, target, info, state, LOG_VERSION);
+//   }
+//   if (ENABLE_NETWORK_LOGGING) {
+//     sendNetworkLog(uid, time, eventName, target, info, state, LOG_VERSION);
+//   }
+// }
+
+// // OK, go.
+// if (ENABLE_NETWORK_LOGGING) {
+//   hookEventsToLog();
+// }
+
+// // module pattern to allow some key functions to be "public"
+// return {
+// 	logEvent
+// };
+
+// }());
+
 // Log the given event.
 function logEvent(event, customName, customInfo) {
-	
-	console.log('event', event, 'customName', customName, 'customInfo', customInfo);
-	
   var time = (new Date).getTime();
-  var eventName = customName || event.type;
-  // By default, monitor some global state on every event.
+  var eventName = customName || (event && event.type);
   var infoObj = GLOBAL_STATE_TO_LOG();
-  // And monitor a few interesting fields from the event, if present.
-  for (var key in EVENT_PROPERTIES_TO_LOG) {
-	if (event && key in event) {
-      infoObj[key] = event[key];
+
+  if (event && EVENT_PROPERTIES_TO_LOG) {
+    for (var key in EVENT_PROPERTIES_TO_LOG) {
+      if (key in event) {
+        infoObj[key] = event[key];
+      }
     }
   }
-  // Let a custom event add fields to the info.
-  if (customInfo) {
+
+  // Check if this is a custom event for logging clicks and time
+  if (event && event.type === 'log' && event.detail) {
+    // Merge event detail into infoObj
+    infoObj = { ...infoObj, ...event.detail.info };
+  } else if (customInfo) {
+    // Handle other custom logs if necessary
     infoObj = Object.assign(infoObj, customInfo);
   }
+
   var info = JSON.stringify(infoObj);
-  var target = document;
-  if (event) {target = elementDesc(event.target);}
+  var target = elementDesc(event ? event.target : document);
   var state = location.hash;
 
   if (ENABLE_CONSOLE_LOGGING) {
@@ -142,17 +189,6 @@ function logEvent(event, customName, customInfo) {
   }
 }
 
-// OK, go.
-if (ENABLE_NETWORK_LOGGING) {
-  hookEventsToLog();
-}
-
-// module pattern to allow some key functions to be "public"
-return {
-	logEvent
-};
-
-}());
 
 /////////////////////////////////////////////////////////////////////////////
 // CHANGE ME:
