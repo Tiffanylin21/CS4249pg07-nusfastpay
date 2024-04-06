@@ -1,5 +1,6 @@
 # CS4249pg07-nusfastpay
-WebApp for CS4249 group 7 prototype for an improved NUSFastPay
+WebApp for CS4249 group 7 prototype for an improved NUSFastPay.
+Click (here)[https://main--nus-faster-pay.netlify.app/] to access the webApp.
 
 ## Set-up
 - Install `yarn`
