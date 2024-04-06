@@ -2,18 +2,30 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import StartScreen from "./Screens/StartScreen";
 import "./App.css";
-import MyPayments from "./Screens/FasterPay/MyPayments";
-import PaymentOptions from "./Screens/FasterPay/PaymentOptions";
-import QRCode from "./Screens/FasterPay/QRCode";
+import PaymentOptions from "./Screens/PaymentOptions";
+import QRCode from "./Screens/QRCode";
+import AccountDashboard from "./Screens/AccountDashboard";
+import ShoppingCart from "./Screens/ShoppingCart";
+import CustomerDetails from "./Screens/CustomerDetails";
+import NUSHeader from "./Utils/components/NUSHeader";
+import PaymentItemDetails from "./Screens/PaymentItemDetails";
+import StartTrial from "./Screens/StartTrial";
 
-function App() {  
+function App() {
   return (
-    <Routes>
-      <Route path="/" element={<StartScreen />} />
-      <Route path="/my-payments" element={<MyPayments />} />
-      <Route path="/payment-options" element={<PaymentOptions />} />
-      <Route path="/qr-code" element={<QRCode />} />
-    </Routes>
+    <div style={{ padding: "20px 100px 20px 100px" }}>
+      <NUSHeader />
+      <Routes>
+        <Route path="/" element={<StartScreen />} />
+        <Route path="/start-trial" element={<StartTrial />} />
+        <Route path="/account-dashboard" element={<AccountDashboard />} />
+        <Route path="/payment-item-details" element={<PaymentItemDetails />} />
+        <Route path="/shopping-cart" element={<ShoppingCart />} />
+        <Route path="/payment-options" element={<PaymentOptions />} />
+        <Route path="/customer-details" element={<CustomerDetails />} />
+        <Route path="/qr-code" element={<QRCode />} />
+      </Routes>
+    </div>
   );
 }
 
