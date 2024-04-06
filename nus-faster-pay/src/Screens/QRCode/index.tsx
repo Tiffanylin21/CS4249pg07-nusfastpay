@@ -1,11 +1,12 @@
-import { useContext } from "react";
 import payLahImage from "./images/pay_lah.jpg"; // Import the image correctly
-import { CartContext } from "../../Contexts/CartContext";
 import { COLORS } from "../../Utils/Colors";
+import { useLocation } from "react-router-dom";
+import { calculateTotal } from "../../Utils/methods/CartMethods";
 
 function QRCode() {
-  const { calculateTotal } = useContext(CartContext);
-  const EMAIL = "marylim@gmail.com"
+  const location = useLocation();
+  const { cart } = location.state;
+  const EMAIL = "marylim@gmail.com";
 
   return (
     <div
@@ -17,14 +18,16 @@ function QRCode() {
         padding: "20px",
       }}
     >
-      <h1 style={{ color: COLORS.success, textAlign:"center" }}>You have come to the end of the trail!</h1>
+      <h1 style={{ color: COLORS.success, textAlign: "center" }}>
+        You have come to the end of the trial!
+      </h1>
       <h2>PayNow</h2>
       <div style={{ marginBottom: "20px" }}>
         <div>
           <strong>Number</strong> ABCDEF12345
         </div>
         <div>
-          <strong>Amount</strong> ${calculateTotal().toFixed(2)}
+          <strong>Amount</strong> ${calculateTotal(cart).toFixed(2)}
         </div>
         <div>
           <strong>Email</strong> {EMAIL}

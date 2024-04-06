@@ -1,12 +1,12 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useContext } from "react";
-import { CartContext } from "../../../Contexts/CartContext";
 
-export default function GrandTotal() {
-  const { calculateTotal } = useContext(CartContext);
+interface GrandTotalProps {
+  cartTotal: number;
+}
 
+export default function GrandTotal({ cartTotal }: GrandTotalProps) {
   return (
     <div>
       <Container
@@ -41,7 +41,7 @@ export default function GrandTotal() {
                     padding: "0px",
                   }}
                 >
-                  ${calculateTotal().toFixed(2)}
+                  ${cartTotal.toFixed(2)}
                 </Col>
               </Row>
             </Row>

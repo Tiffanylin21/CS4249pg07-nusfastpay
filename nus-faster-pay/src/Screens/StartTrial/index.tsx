@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { OrangeButton } from "../../Utils/components/OrangeButton";
 import styled from "styled-components";
 import { COLORS } from "../../Utils/Colors";
+import { createNewCart } from "../../Utils/methods/CartMethods";
 
 const Container = styled.div`
   display: flex;
@@ -28,7 +29,8 @@ function StartTrial() {
   const location = useLocation();
   const ivConfig = location.state;
   const navToAccountDashboard = () => {
-    navigate("/account-dashboard", { state: ivConfig });
+    const cart = createNewCart();
+    navigate("/account-dashboard", { state: { cart, ivConfig } });
   };
 
   const TASK_DESCRIPTION = ivConfig.trial.description;
