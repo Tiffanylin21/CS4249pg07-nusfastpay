@@ -5,6 +5,12 @@ export interface PaymentItem {
     quantity: number;
     deadline: string;
 }
+
+export interface Trial {
+    paymentTitles: string[];
+    description: string;
+}
+
 export type accessibilityOfPriceInfo = 'not shown' | 'shown';
 
 export type PaymentCardSize = 'small' | 'medium' | 'large';

@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { OrangeButton } from "../../Utils/components/OrangeButton";
 import styled from "styled-components";
+import { getTrial } from "../../Utils/Data";
 
 const InputContainer = styled.div`
   display: flex;
@@ -12,13 +13,13 @@ const InputContainer = styled.div`
 function StartScreen() {
   const navigate = useNavigate();
   const [ivConfigCode, setIvConfigCode] = React.useState("");
-  const isValidIvCodeRegex = /^[AB]#[ABC]#[AB]$/;
+  const isValidIvCodeRegex = /^[AB]#[ABC]#[ABCDEF]$/;
   const handleStart = () => {
     if (isValidIvCodeRegex.test(ivConfigCode)) {
       const [
         accessibilityOfPriceInfoCode,
         paymentCardSizeCode,
-        numOfPaymentCode,
+        trialCode,
       ] = ivConfigCode.split("#");
       const accessibilityOfPriceInfo =
         accessibilityOfPriceInfoCode === "A" ? "not shown" : "shown";
@@ -28,11 +29,11 @@ function StartScreen() {
           : paymentCardSizeCode === "B"
           ? "medium"
           : "large";
-      const numOfPayment = numOfPaymentCode === "A" ? 1 : 3;
+      const trial = getTrial(trialCode);
       const ivConfig = {
         accessibilityOfPriceInfo,
         paymentCardSize,
-        numOfPayment,
+        trial,
       };
       navigate("/start-trial", { state: ivConfig });
     } else {

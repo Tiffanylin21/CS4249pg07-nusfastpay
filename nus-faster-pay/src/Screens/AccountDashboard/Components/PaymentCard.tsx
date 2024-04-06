@@ -55,7 +55,7 @@ export function PaymentCard({ item, size, isPriceShown, handleAddToCart }: Payme
   const { cart } = useContext(CartContext);
 
   return (
-    <Container size={size} onClick={handleAddToCart}>
+    <Container size={size} isselected={cart.has(item.title)} onClick={handleAddToCart}>
       <Body>{item.title}</Body>
         {isPriceShown && 
           <PriceArrowContainer>
