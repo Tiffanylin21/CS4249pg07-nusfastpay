@@ -1,53 +1,76 @@
-import React, { useState, FormEvent } from 'react';
+import { FormEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Body, TextContainer, Title } from "../../Utils/StyledComponents";
+import { OrangeButton } from "../../Utils/components/OrangeButton";
+import CartBar from "../../Utils/components/CartBar";
 
 function CustomerDetails() {
   const navigate = useNavigate();
   const location = useLocation();
-  const ivConfig = location.state;
-  const [email, setEmail] = useState(''); // State to hold the email input
+  const { cart, ivConfig } = location.state;
+  const EMAIL = "marylim@gmail.com";
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/qr-code", { state: { ...ivConfig, email } });
+    navigate("/qr-code", { state: { cart, ivConfig } });
   };
 
   // Handler for the Back button
   const handleBack = () => {
-    navigate(-1); // This will take the user back to the previous page in the history stack
+    navigate("/payment-options", { state: { cart, ivConfig } });
+  };
+
+  const navToShoppingCart = () => {
+    navigate("/shopping-cart", { state: { cart, ivConfig } });
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-        <h1>Customer Details</h1>
-        <p style={{ textAlign: 'center', maxWidth: '500px', marginBottom: '20px' }}>
-          If you wish to have a receipt emailed to you following payment, provide your email address here.
-        </p>
-        <form onSubmit={handleSubmit} style={{ width: '100%', maxWidth: '500px' }}>
-          <label htmlFor="email" style={{ display: 'block', marginBottom: '10px' }}>Email address</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            style={{
-              width: '100%',
-              padding: '10px',
-              marginBottom: '20px',
-              border: '1px solid #ccc',
-              borderRadius: '4px'
-            }}
-          />
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <button type="button" onClick={handleBack} style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '4px', cursor: 'pointer' }}>
-              Back
-            </button>
-            <button type="submit" style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '4px', cursor: 'pointer' }}>
-              Next
-            </button>
-          </div>
-        </form>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
+      <CartBar cartSize={cart.size} navToShoppingCart={navToShoppingCart} />
+      <TextContainer style={{ alignSelf: "start" }}>
+        <Title>Customer Details</Title>
+        <br />
+        <Body style={{ marginBottom: 10, textAlign: "center" }}>
+          If you wish to have a receipt emailed to you following payment,
+          provide your email address here.
+        </Body>
+      </TextContainer>
+
+      <form onSubmit={handleSubmit} style={{ width: "80%", padding: 30 }}>
+        <label
+          htmlFor="email"
+          style={{ display: "block", marginBottom: "10px" }}
+        >
+          Email address
+        </label>
+        <input
+          id="email"
+          type="email"
+          value={EMAIL}
+          disabled
+          style={{
+            width: "100%",
+            padding: "10px",
+            marginBottom: "20px",
+            border: "1px solid #ccc",
+            borderRadius: "4px",
+          }}
+        />
+        <div style={{ display: "flex", justifyContent: "right" }}>
+          <OrangeButton className="me-3" type="submit">
+            Continue
+          </OrangeButton>
+          <OrangeButton type="button" onClick={handleBack}>
+            Select a different payment method
+          </OrangeButton>
+        </div>
+      </form>
     </div>
   );
 }

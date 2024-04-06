@@ -4,18 +4,22 @@ import StartScreen from "./Screens/StartScreen";
 import "./App.css";
 import PaymentOptions from "./Screens/PaymentOptions";
 import QRCode from "./Screens/QRCode";
-import AccountDashbaord from "./Screens/AccountDashboard";
+import AccountDashboard from "./Screens/AccountDashboard";
 import ShoppingCart from "./Screens/ShoppingCart";
 import CustomerDetails from "./Screens/CustomerDetails";
-import { NUSHeader } from "./Utils/SharedComponents";
+import NUSHeader from "./Utils/components/NUSHeader";
+import PaymentItemDetails from "./Screens/PaymentItemDetails";
+import StartTrial from "./Screens/StartTrial";
 
-function App() {  
+function App() {
   return (
     <div style={{ padding: "20px 100px 20px 100px" }}>
-      <NUSHeader></NUSHeader>
+      <NUSHeader />
       <Routes>
         <Route path="/" element={<StartScreen />} />
-        <Route path="/account-dashboard" element={<AccountDashbaord />} />
+        <Route path="/start-trial" element={<StartTrial />} />
+        <Route path="/account-dashboard" element={<AccountDashboard />} />
+        <Route path="/payment-item-details" element={<PaymentItemDetails />} />
         <Route path="/shopping-cart" element={<ShoppingCart />} />
         <Route path="/payment-options" element={<PaymentOptions />} />
         <Route path="/customer-details" element={<CustomerDetails />} />

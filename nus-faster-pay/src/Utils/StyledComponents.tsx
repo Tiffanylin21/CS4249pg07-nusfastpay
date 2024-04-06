@@ -15,10 +15,11 @@ export const TextContainer = styled.div`
 // TEXT
 export const Title = styled.text`
   font-size: 24px;
+  font-weight: bold;
   text-align: left;
-  overflow: 'hidden';
-  whiteSpace: 'nowrap';
-  textOverflow: 'ellipsis';
+  overflow: "hidden";
+  whitespace: "nowrap";
+  textoverflow: "ellipsis";
   color: ${COLORS.black};
   // border: 1px solid black; CAN UNCOMMENT THIS TO SEE THE BOUNDARY OF THE CONTAINER
 `;
@@ -27,25 +28,17 @@ export const Subtitle = styled.text`
   font-size: 14px;
   font-weight: bold;
   text-align: left;
-  overflow: 'hidden';
-  whiteSpace: 'nowrap';
-  textOverflow: 'ellipsis';
+  overflow: "hidden";
+  whitespace: "nowrap";
+  textoverflow: "ellipsis";
   color: ${COLORS.black};
 `;
 
 export const Body = styled.text`
   font-size: 1em;
   text-align: left;
-  overflow: 'hidden';
-  whiteSpace: 'nowrap';
-  textOverflow: 'ellipsis';
+  overflow: "hidden";
+  whitespace: "nowrap";
+  textoverflow: "ellipsis";
   color: ${COLORS.black};
 `;
-
-export function NUSHeader() {
-  return (
-    <Container>
-      <Title>NUS Logo</Title>
-    </Container>
-  );
-}

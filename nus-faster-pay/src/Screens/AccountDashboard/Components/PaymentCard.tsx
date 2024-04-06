@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { PaymentItem, PaymentCardSize } from "../../../Utils/Types";
-import { Body } from "../../../Utils/SharedComponents";
+import { Body } from "../../../Utils/StyledComponents";
 import { COLORS } from "../../../Utils/Colors";
-import { RightArrow } from "./RightArrow";
-import { useLocation, useNavigate } from "react-router-dom";
+import { ReactComponent as Tick } from "../../../Utils/images/charm_tick.svg";
 
-const Container = styled.div<{ size: PaymentCardSize }>`
+const Container = styled.div<{ size: PaymentCardSize, isselected: boolean }>`
   height: ${(props) =>
     props.size === "small"
       ? "20px"
@@ -14,10 +13,13 @@ const Container = styled.div<{ size: PaymentCardSize }>`
       : "120px"};
   padding: 10px;
   border-bottom: 1px solid ${COLORS.darkGray};
-  background: ${COLORS.lightGray};
+  background: ${(props) => props.isselected ? COLORS.selected : COLORS.white};
   display: flex;
   align-items: center;
   justify-content: space-between;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const PriceArrowContainer = styled.div`
@@ -26,26 +28,52 @@ const PriceArrowContainer = styled.div`
   justify-content: space-between;
 `;
 
+const AddedToCartContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 10px;
+`;
+
+const AddToCartText = styled.text`
+  font-size: 0.75em;
+  overflow: "hidden";
+  whitespace: "nowrap";
+  textoverflow: "ellipsis";
+  color: ${COLORS.black};
+  margin-left: 5px;
+  margin-right: 5px;
+`;
+
 interface PaymentCardProps {
   item: PaymentItem;
   size: PaymentCardSize;
+  isPriceShown: boolean;
+  itemInCart: boolean;
+  handleAddToCart: () => void;
 }
 
-export function PaymentCard({ item, size }: PaymentCardProps) {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const ivConfig = location.state;
-
+export function PaymentCard({
+  item,
+  size,
+  isPriceShown,
+  itemInCart,
+  handleAddToCart,
+}: PaymentCardProps) {
   return (
-    <Container
-      size={size}
-      onClick={() => navigate("/shopping-cart", { state: { item, ivConfig } })}
-    >
+    <Container size={size} isselected={itemInCart} onClick={handleAddToCart}>
       <Body>{item.title}</Body>
-      <PriceArrowContainer>
-        <Body>${item.price.toFixed(2)}</Body>
-        <RightArrow />
-      </PriceArrowContainer>
+      {isPriceShown && (
+        <PriceArrowContainer>
+          {itemInCart && (
+            <AddedToCartContainer>
+              <Tick />
+              <AddToCartText>Added to Cart</AddToCartText>
+            </AddedToCartContainer>
+          )}
+          <Body>${item.price.toFixed(2)}</Body>
+        </PriceArrowContainer>
+      )}
     </Container>
   );
 }
