@@ -61,7 +61,7 @@ export function PaymentCard({
   handleAddToCart,
 }: PaymentCardProps) {
   return (
-    <Container size={size} isselected={cart.has(item.title)} onClick={handleAddToCart}>
+    <Container size={size} isselected={itemInCart} onClick={handleAddToCart}>
       <Body>{item.title}</Body>
       {isPriceShown && (
         <PriceArrowContainer>
