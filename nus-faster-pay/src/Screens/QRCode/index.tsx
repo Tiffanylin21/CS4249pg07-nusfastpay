@@ -10,16 +10,6 @@ function QRCode() {
   const { cart, ivConfig, startTime, totalClicks: initialTotalClicks } = location.state;
   const EMAIL = "marylim@gmail.com";
 
-  // Calculate the total time taken
-  // useEffect(() => {
-  //   if (startTime) {
-  //     const endTime = new Date();
-  //     const totalTimeTaken = endTime.getTime() - startTime.getTime(); // Time in milliseconds
-  //     const totalTimeTakenInSeconds = totalTimeTaken / 1000; // Convert milliseconds to seconds
-  //     console.log(`Total time taken: ${totalTimeTakenInSeconds} seconds`);
-  //   }
-  // }, [startTime]);
-  // console.log(ivConfig.ivConfigCode);
   useEffect(() => {
     if (startTime) {
       const endTime = new Date();

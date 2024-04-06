@@ -8,7 +8,6 @@ import useClickTracker from '../../Utils/methods/useClickTracker';
 function CustomerDetails() {
   const navigate = useNavigate();
   const location = useLocation();
-  // const { cart, ivConfig } = location.state;
   const { cart, ivConfig, startTime, totalClicks: initialTotalClicks } = location.state;
   const totalClicks = useClickTracker();
   const EMAIL = "marylim@gmail.com";
