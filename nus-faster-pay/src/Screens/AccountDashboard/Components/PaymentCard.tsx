@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { CartContext } from "../../../Contexts/CartContext";
 import { ReactComponent as Tick } from "../../../Utils/images/charm_tick.svg";
 
-const Container = styled.div<{ size: PaymentCardSize }>`
+const Container = styled.div<{ size: PaymentCardSize, isselected: boolean }>`
   height: ${(props) =>
     props.size === "small"
       ? "20px"
@@ -15,10 +15,13 @@ const Container = styled.div<{ size: PaymentCardSize }>`
       : "120px"};
   padding: 10px;
   border-bottom: 1px solid ${COLORS.darkGray};
-  background: ${COLORS.white};
+  background: ${(props) => props.isselected ? COLORS.selected : COLORS.white};
   display: flex;
   align-items: center;
   justify-content: space-between;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const PriceArrowContainer = styled.div`
