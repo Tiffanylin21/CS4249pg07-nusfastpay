@@ -4,7 +4,7 @@ import { Body } from "../../../Utils/StyledComponents";
 import { COLORS } from "../../../Utils/Colors";
 import { ReactComponent as Tick } from "../../../Utils/images/charm_tick.svg";
 
-const Container = styled.div<{ size: PaymentCardSize }>`
+const Container = styled.div<{ size: PaymentCardSize, isselected: boolean }>`
   height: ${(props) =>
     props.size === "small"
       ? "20px"
@@ -13,10 +13,13 @@ const Container = styled.div<{ size: PaymentCardSize }>`
       : "120px"};
   padding: 10px;
   border-bottom: 1px solid ${COLORS.darkGray};
-  background: ${COLORS.white};
+  background: ${(props) => props.isselected ? COLORS.selected : COLORS.white};
   display: flex;
   align-items: center;
   justify-content: space-between;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const PriceArrowContainer = styled.div`
@@ -58,7 +61,7 @@ export function PaymentCard({
   handleAddToCart,
 }: PaymentCardProps) {
   return (
-    <Container size={size} onClick={handleAddToCart}>
+    <Container size={size} isselected={itemInCart} onClick={handleAddToCart}>
       <Body>{item.title}</Body>
       {isPriceShown && (
         <PriceArrowContainer>

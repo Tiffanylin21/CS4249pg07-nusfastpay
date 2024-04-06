@@ -33,10 +33,7 @@ function StartTrial() {
     navigate("/account-dashboard", { state: { cart, ivConfig } });
   };
 
-  const TASK_DESCRIPTION =
-    ivConfig.numOfPayment === 1
-      ? "Make payment for “Education Records System Tuition Fees” ($4000.00) via PayNow QR Code."
-      : 'Make payment for “Education Records System Tuition Fees” ($4000.00), "Student Housing Fees" ($3000.00) and "Season Parking Fees" ($350.00) via PayNow QR Code.';
+  const TASK_DESCRIPTION = ivConfig.trial.description;
 
   return (
     <Container>

@@ -17,6 +17,7 @@ export const COLORS = {
     error: "#F53838", //this is a shade of red.
     success: "#17A32E", //this is a shade of green.
     warning: "#FF0400", //this is bright red.
+    selected: "#F7F7F7",
     
     info: "#0015ff", //this is a bright blue.
     transparent: "transparent",

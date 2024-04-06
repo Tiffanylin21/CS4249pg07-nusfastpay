@@ -18,8 +18,17 @@ function ShoppingCart() {
     // returns a list of payment items that are in cart
     return paymentItems.filter((item) => cart.has(item.title));
   };
-
-  const isNumPaymentsFulfilled = cart.size === ivConfig.numOfPayment;
+  const isPaymentsCorrect = () => {
+    if (ivConfig.trial.paymentTitles.length !== cart.size) {
+      return false;
+    }
+    for (let i = 0; i < ivConfig.trial.paymentTitles.length; i++) {
+      if (!cart.has(ivConfig.trial.paymentTitles[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   const isPaymentAmountValid = calculateTotal(cart) > 0;
 
@@ -33,12 +42,8 @@ function ShoppingCart() {
   };
 
   const handleProcessPayment = () => {
-    if (!isNumPaymentsFulfilled) {
-      alert(
-        `Please select ${ivConfig.numOfPayment} payment item${
-          ivConfig.numOfPayment === 1 ? "" : "s"
-        }`
-      );
+    if (!isPaymentsCorrect()) {
+      alert(`Task requirements not fulfilled. Your current task requires you to perform the following: \n${ivConfig.trial.description}\n You may also check the Qualtrics survey for the correct payment items to select at any point in time.`);
       return;
     }
     navigate("/payment-options", { state: { cart, ivConfig } });
