@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import payLahImage from "./images/pay_lah.jpg"; // Import the image correctly
 import { COLORS } from "../../Utils/Colors";
 import { useLocation } from "react-router-dom";
@@ -5,9 +6,19 @@ import { calculateTotal } from "../../Utils/methods/CartMethods";
 
 function QRCode() {
   const location = useLocation();
-  const { cart } = location.state;
+  const { cart, ivConfig, startTime, totalClicks: initialTotalClicks } = location.state;
   const EMAIL = "marylim@gmail.com";
 
+  // Calculate the total time taken
+  useEffect(() => {
+    if (startTime) {
+      const endTime = new Date();
+      const totalTimeTaken = endTime.getTime() - startTime.getTime(); // Time in milliseconds
+      const totalTimeTakenInSeconds = totalTimeTaken / 1000; // Convert milliseconds to seconds
+      console.log(`Total time taken: ${totalTimeTakenInSeconds} seconds`);
+    }
+  }, [startTime]);
+  
   return (
     <div
       style={{

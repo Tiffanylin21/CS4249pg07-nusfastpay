@@ -7,21 +7,25 @@ import CartBar from "../../Utils/components/CartBar";
 import { useState } from "react";
 import { PaymentItem } from "../../Utils/Types";
 import { addToCart, removeFromCart } from "../../Utils/methods/CartMethods";
+import useClickTracker from '../../Utils/methods/useClickTracker';
 
 function AccountDashboard() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cart, ivConfig } = location.state;
+  const { cart, ivConfig, startTime, totalClicks: initialTotalClicks } = location.state;
+  const totalClicks = useClickTracker();
   const DESCRIPTION =
     "For new students, please make payment at least 3 days after you have completed Registration Part One, as your student ID and fees will only be available in NUSfastPay at that time.";
   const [key, setKey] = useState(0);
+
+
   const navToShoppingCart = () => {
-    navigate("/shopping-cart", { state: { cart, ivConfig } });
+    navigate("/shopping-cart", { state: { cart, ivConfig, startTime, totalClicks } });
   };
 
   const handleClick = (item: PaymentItem) => {
     if (ivConfig.accessibilityOfPriceInfo === "not shown") {
-      navigate("/payment-item-details", { state: { cart, item, ivConfig } });
+      navigate("/payment-item-details", {  state: { cart, item, ivConfig, startTime, totalClicks }  });
     } else if (cart.has(item.title)) {
       removeFromCart(cart, item.title);
       setKey(key + 1);

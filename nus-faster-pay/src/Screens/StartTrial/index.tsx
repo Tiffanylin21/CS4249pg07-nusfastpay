@@ -30,7 +30,9 @@ function StartTrial() {
   const ivConfig = location.state;
   const navToAccountDashboard = () => {
     const cart = createNewCart();
-    navigate("/account-dashboard", { state: { cart, ivConfig } });
+    const startTime = new Date(); // captures the current time
+    const totalClicks = 0;
+    navigate("/account-dashboard", { state: { cart, ivConfig, startTime, totalClicks } });
   };
 
   const TASK_DESCRIPTION = ivConfig.trial.description;
