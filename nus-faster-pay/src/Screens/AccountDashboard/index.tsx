@@ -8,13 +8,12 @@ import { useState } from "react";
 import { PaymentItem } from "../../Utils/Types";
 import { addToCart, removeFromCart } from "../../Utils/methods/CartMethods";
 import useClickTracker from '../../Utils/methods/useClickTracker';
-import { IVConfig } from "../../Utils/Types";
 
 function AccountDashboard() {
   const navigate = useNavigate();
   const location = useLocation();
   const { cart, ivConfig, startTime, totalClicks: initialTotalClicks } = location.state;
-
+  
   const totalClicks = useClickTracker();
   const DESCRIPTION =
     "For new students, please make payment at least 3 days after you have completed Registration Part One, as your student ID and fees will only be available in NUSfastPay at that time.";
