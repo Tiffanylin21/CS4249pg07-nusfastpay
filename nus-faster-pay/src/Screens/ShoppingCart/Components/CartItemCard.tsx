@@ -1,23 +1,22 @@
-import { useContext } from "react";
 import { PaymentItem } from "../../../Utils/Types";
-import { CartContext } from "../../../Contexts/CartContext";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import image from "../Images/image.jpeg";
 import { OrangeButton } from "../../../Utils/components/OrangeButton";
+import { removeFromCart } from "../../../Utils/methods/CartMethods";
 
 interface CartItemCardProps {
+  cart: Set<String>;
   item: PaymentItem;
   updateItemsShown: () => void;
 }
 
 export default function CartItemCard({
+  cart,
   item,
   updateItemsShown,
 }: CartItemCardProps) {
-  const { removeFromCart } = useContext(CartContext);
-
   return (
     <div
       style={{
@@ -59,7 +58,7 @@ export default function CartItemCard({
                 >
                   <OrangeButton
                     onClick={() => {
-                      removeFromCart(item.title);
+                      removeFromCart(cart, item.title);
                       updateItemsShown();
                     }}
                   >
