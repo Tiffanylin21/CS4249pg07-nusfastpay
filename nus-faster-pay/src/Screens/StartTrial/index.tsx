@@ -45,7 +45,7 @@ const StartButton = styled(OrangeButton)`
 function StartTrial() {
   const navigate = useNavigate();
   const location = useLocation();
-  const ivConfig = location.state;
+  const { ivConfig } = location.state;
   const navToAccountDashboard = () => {
     const cart = createNewCart();
     const startTime = new Date(); // captures the current time

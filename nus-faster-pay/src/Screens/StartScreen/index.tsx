@@ -37,7 +37,7 @@ function StartScreen() {
         trial: trial,
         ivConfigCode: ivConfigCode, // Include the raw config code
       };
-      navigate("/start-trial", { state: ivConfig });
+      navigate("/start-trial", { state: { ivConfig } });
     } else {
       alert("Invalid IV Config Code");
     }
