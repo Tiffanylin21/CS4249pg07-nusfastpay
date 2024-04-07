@@ -1,14 +1,20 @@
 import React, { useEffect } from 'react';
 import payLahImage from "./images/pay_lah.jpg"; // Import the image correctly
 import { COLORS } from "../../Utils/Colors";
-import { useLocation } from "react-router-dom";
+import { OrangeButton } from "../../Utils/components/OrangeButton";
+import { useLocation, useNavigate  } from "react-router-dom";
 import { calculateTotal } from "../../Utils/methods/CartMethods";
 import axios from 'axios'; // You'd need to install axios or use a different method to make HTTP requests.
 
 function QRCode() {
+  const navigate = useNavigate();
   const location = useLocation();
   const { cart, ivConfig, startTime, totalClicks: initialTotalClicks } = location.state;
   const EMAIL = "marylim@gmail.com";
+
+  const navigateToStartScreen = () => {
+    navigate("/");
+  };
 
   useEffect(() => {
     if (startTime) {
@@ -74,6 +80,7 @@ function QRCode() {
         alt="PayLah QR Code"
         style={{ width: "40%", height: "auto" }}
       />
+      <OrangeButton onClick={navigateToStartScreen}>Return to Start Screen</OrangeButton>
     </div>
   );
 }
