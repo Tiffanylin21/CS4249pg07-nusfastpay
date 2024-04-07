@@ -38,7 +38,7 @@ function QRCode() {
   
       console.log(`Total time taken: ${totalTimeTakenInSeconds} seconds`);
     }
-  }, []); // Make sure to add ivConfig.ivConfigCode to the dependency array
+  }, [initialTotalClicks, isDataSent, ivConfig.ivConfigCode, startTime]); // Make sure to add ivConfig.ivConfigCode to the dependency array
   
   
   return (
