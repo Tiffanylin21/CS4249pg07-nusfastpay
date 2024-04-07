@@ -1,13 +1,45 @@
+import React, { useEffect } from 'react';
 import payLahImage from "./images/pay_lah.jpg"; // Import the image correctly
 import { COLORS } from "../../Utils/Colors";
-import { useLocation } from "react-router-dom";
+import { OrangeButton } from "../../Utils/components/OrangeButton";
+import { useLocation, useNavigate  } from "react-router-dom";
 import { calculateTotal } from "../../Utils/methods/CartMethods";
+import axios from 'axios'; // You'd need to install axios or use a different method to make HTTP requests.
+import { FilledOrangeButton } from '../../Utils/components/FilledOrangeButton';
 
 function QRCode() {
+  const navigate = useNavigate();
   const location = useLocation();
-  const { cart } = location.state;
+  const { cart, ivConfig, startTime, totalClicks: initialTotalClicks } = location.state;
   const EMAIL = "marylim@gmail.com";
 
+  const navigateToStartScreen = () => {
+    navigate("/");
+  };
+
+  useEffect(() => {
+    if (startTime) {
+      const endTime = new Date();
+      const totalTimeTaken = endTime.getTime() - new Date(startTime).getTime();
+      const totalTimeTakenInSeconds = totalTimeTaken / 1000;
+  
+      axios.post('http://localhost:5000/updateSheet', {
+        configCode: ivConfig.ivConfigCode, // Add this line to include the ivConfigCode
+        totalClicks: initialTotalClicks,
+        totalTimeTakenInSeconds: totalTimeTakenInSeconds,
+      })
+      .then(response => {
+        console.log('Sheet updated successfully', response);
+      })
+      .catch(error => {
+        console.error('Error updating sheet', error);
+      });
+  
+      console.log(`Total time taken: ${totalTimeTakenInSeconds} seconds`);
+    }
+  }, [startTime, initialTotalClicks, ivConfig.ivConfigCode]); // Make sure to add ivConfig.ivConfigCode to the dependency array
+  
+  
   return (
     <div
       style={{
@@ -21,6 +53,17 @@ function QRCode() {
       <h1 style={{ color: COLORS.success, textAlign: "center" }}>
         You have come to the end of the trial!
       </h1>
+      <div style={{ marginTop: "20px" }}>
+        <FilledOrangeButton
+          onClick={navigateToStartScreen}
+          style={{ 
+            fontSize: "1.5em", // Assuming the default is 1em, adjust as needed
+            padding: "1em 2em", // Adjust based on the current padding
+          }}
+        >
+          Click to start a new trial
+        </FilledOrangeButton>
+      </div>
       <h2>PayNow</h2>
       <div style={{ marginBottom: "20px" }}>
         <div>
@@ -32,7 +75,6 @@ function QRCode() {
         <div>
           <strong>Email</strong> {EMAIL}
         </div>{" "}
-        {/* Display the passed email or a placeholder */}
       </div>
       <p
         style={{ maxWidth: "500px", textAlign: "center", marginBottom: "20px" }}

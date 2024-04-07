@@ -10,6 +10,7 @@ import styled from "styled-components";
 import { OrangeButton } from "../../Utils/components/OrangeButton";
 import CartBar from "../../Utils/components/CartBar";
 import { addToCart } from "../../Utils/methods/CartMethods";
+import useClickTracker from '../../Utils/methods/useClickTracker';
 
 const CenteredTextContainer = styled.div`
   display: flex;
@@ -55,7 +56,8 @@ const InputTextField = styled.input`
 function PaymentItemDetails() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cart, item, ivConfig } = location.state;
+  const { cart, ivConfig, item, startTime } = location.state;
+  useClickTracker();
 
   const DESCRIPTIONONE =
     "For new students, please make payment at least 3 days after you have" +
@@ -68,11 +70,11 @@ function PaymentItemDetails() {
   const MATRICID = "A0000000Z";
 
   const navBack = () => {
-    navigate("/account-dashboard", { state: { cart, ivConfig } });
+    navigate("/account-dashboard", { state: { cart, ivConfig, startTime } });
   };
 
   const navToShoppingCart = () => {
-    navigate("/shopping-cart", { state: { cart, item, ivConfig } });
+    navigate("/shopping-cart", { state: { cart, item, ivConfig, startTime } });
   };
 
   const handleAddToCart = () => {

@@ -4,18 +4,20 @@ import converaImage from "./images/convera.jpg";
 import invoiceImage from "./images/invoice.jpg";
 import mastercardImage from "./images/mastercard.jpg";
 import CartBar from "../../Utils/components/CartBar";
+import useClickTracker from '../../Utils/methods/useClickTracker';
 
 function PaymentOptions() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cart, ivConfig } = location.state;
+  const { cart, ivConfig, startTime } = location.state;
+  useClickTracker();
 
   const handleImageClick = () => {
-    navigate("/customer-details", { state: { cart, ivConfig } });
+    navigate("/customer-details", { state: { cart, ivConfig, startTime } });
   };
 
   const navToShoppingCart = () => {
-    navigate("/shopping-cart", { state: { cart, ivConfig } });
+    navigate("/shopping-cart", { state: { cart, ivConfig, startTime } });
   };
 
   return (

@@ -21,3 +21,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+package-lock.json
+secrets.json
+
+# other files
+.editorconfig
+.gitattributes
+.yarnnrc.yml
+/.yarn
+/node_modules
+
+.yarn/install-state.gz

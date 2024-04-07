@@ -20,4 +20,5 @@ export interface IVConfig {
     accessibilityOfPriceInfo: accessibilityOfPriceInfo;
     paymentCardSize: PaymentCardSize;
     trial: Trial;
+    ivConfigCode?: string;
 }
