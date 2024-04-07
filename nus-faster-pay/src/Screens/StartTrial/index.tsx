@@ -27,7 +27,7 @@ const StartButton = styled(OrangeButton)`
 function StartTrial() {
   const navigate = useNavigate();
   const location = useLocation();
-  const ivConfig = location.state;
+  const { ivConfig } = location.state;
   const navToAccountDashboard = () => {
     const cart = createNewCart();
     navigate("/account-dashboard", { state: { cart, ivConfig } });

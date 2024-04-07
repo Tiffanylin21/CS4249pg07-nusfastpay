@@ -36,7 +36,7 @@ function StartScreen() {
         paymentCardSize: paymentCardSize,
         trial: trial,
       };
-      navigate("/start-trial", { state: ivConfig });
+      navigate("/start-trial", { state: { ivConfig } });
     } else {
       alert("Invalid IV Config Code");
     }
