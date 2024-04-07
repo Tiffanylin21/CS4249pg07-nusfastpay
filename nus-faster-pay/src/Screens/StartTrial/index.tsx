@@ -3,6 +3,7 @@ import { OrangeButton } from "../../Utils/components/OrangeButton";
 import styled from "styled-components";
 import { COLORS } from "../../Utils/Colors";
 import { createNewCart } from "../../Utils/methods/CartMethods";
+import { paymentItems } from "../../Utils/Data";
 
 const Container = styled.div`
   display: flex;
@@ -26,6 +27,7 @@ const Text = styled.div` // Changed to div to remove default h3 styling
 `;
 
 const BoldText = styled.span`
+  margin-top: 20px;
   font-weight: bold;
 `;
 
@@ -53,17 +55,13 @@ function StartTrial() {
     navigate("/account-dashboard", { state: { cart, ivConfig, startTime, totalClicks } });
   };
 
-  const TASK_DESCRIPTION = ivConfig.trial.description;
-
   return (
     <Container>
-      <Text>
-        <BoldText>Task: Pay for the following fees together via PayNow QR code:</BoldText>
-      </Text>
+      <BoldText>Task: Pay for the following fees together via PayNow QR code:</BoldText>
       <List>
-        <ListItem><BoldText>Education Records System Tuition Fees ($4000.00)</BoldText></ListItem>
-        <ListItem><BoldText>Library Fees ($2.00)</BoldText></ListItem>
-        <ListItem><BoldText>Student Housing Fees ($3000.00)</BoldText></ListItem>
+        {ivConfig.trial.paymentTitles.map((title: string) => (
+          <ListItem key={title}><BoldText>{title} (${paymentItems.find((item) => item.title === title)?.price.toFixed(2)})</BoldText></ListItem>
+        ))}
       </List>
       <Text>
         Task will be considered completed when you reach the PayNow QR code screen.

@@ -5,6 +5,7 @@ import { OrangeButton } from "../../Utils/components/OrangeButton";
 import { useLocation, useNavigate  } from "react-router-dom";
 import { calculateTotal } from "../../Utils/methods/CartMethods";
 import axios from 'axios'; // You'd need to install axios or use a different method to make HTTP requests.
+import { FilledOrangeButton } from '../../Utils/components/FilledOrangeButton';
 
 function QRCode() {
   const navigate = useNavigate();
@@ -52,6 +53,17 @@ function QRCode() {
       <h1 style={{ color: COLORS.success, textAlign: "center" }}>
         You have come to the end of the trial!
       </h1>
+      <div style={{ marginTop: "20px" }}>
+        <FilledOrangeButton
+          onClick={navigateToStartScreen}
+          style={{ 
+            fontSize: "1.5em", // Assuming the default is 1em, adjust as needed
+            padding: "1em 2em", // Adjust based on the current padding
+          }}
+        >
+          Click to start a new trial
+        </FilledOrangeButton>
+      </div>
       <h2>PayNow</h2>
       <div style={{ marginBottom: "20px" }}>
         <div>
@@ -63,7 +75,6 @@ function QRCode() {
         <div>
           <strong>Email</strong> {EMAIL}
         </div>{" "}
-        {/* Display the passed email or a placeholder */}
       </div>
       <p
         style={{ maxWidth: "500px", textAlign: "center", marginBottom: "20px" }}
@@ -80,19 +91,6 @@ function QRCode() {
         alt="PayLah QR Code"
         style={{ width: "40%", height: "auto" }}
       />
-      <div style={{ marginTop: "20px" }}>
-        {/* Double the font-size and padding to make the button appear two times bigger */}
-        <OrangeButton
-          onClick={navigateToStartScreen}
-          style={{ 
-            fontSize: "1.5em", // Assuming the default is 1em, adjust as needed
-            padding: "1em 2em", // Adjust based on the current padding
-          }}
-        >
-          Click to start a new trial
-        </OrangeButton>
-      </div>
-
     </div>
   );
 }
