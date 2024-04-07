@@ -80,7 +80,19 @@ function QRCode() {
         alt="PayLah QR Code"
         style={{ width: "40%", height: "auto" }}
       />
-      <OrangeButton onClick={navigateToStartScreen}>Return to Start Screen</OrangeButton>
+      <div style={{ marginTop: "20px" }}>
+        {/* Double the font-size and padding to make the button appear two times bigger */}
+        <OrangeButton
+          onClick={navigateToStartScreen}
+          style={{ 
+            fontSize: "1.5em", // Assuming the default is 1em, adjust as needed
+            padding: "1em 2em", // Adjust based on the current padding
+          }}
+        >
+          Click to start a new trial
+        </OrangeButton>
+      </div>
+
     </div>
   );
 }
