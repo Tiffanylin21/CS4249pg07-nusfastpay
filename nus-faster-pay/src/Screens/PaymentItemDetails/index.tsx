@@ -56,7 +56,6 @@ const InputTextField = styled.input`
 function PaymentItemDetails() {
   const navigate = useNavigate();
   const location = useLocation();
-  // const { cart, item, ivConfig } = location.state;
   const { cart, ivConfig, item, startTime } = location.state;
   useClickTracker();
 

@@ -9,7 +9,6 @@ import useClickTracker from '../../Utils/methods/useClickTracker';
 function PaymentOptions() {
   const navigate = useNavigate();
   const location = useLocation();
-  // const { cart, ivConfig } = location.state;
   const { cart, ivConfig, startTime } = location.state;
   useClickTracker();
 
