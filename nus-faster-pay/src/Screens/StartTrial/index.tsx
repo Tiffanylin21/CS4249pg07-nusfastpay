@@ -8,15 +8,33 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
+  padding-left: 20px; // Add padding to align content as per your design
 `;
 
-const Text = styled.h3`
+const List = styled.ul`
+  list-style: inside; // Adjust as needed to match your design
+`;
+
+const ListItem = styled.li`
+  margin-bottom: 10px; // Adjust as needed for spacing
+  font-weight: bold; // Make list items bold
+`;
+
+const Text = styled.div` // Changed to div to remove default h3 styling
   margin-bottom: 20px;
+  font-weight: normal; // Set to normal to match your image
+`;
+
+const BoldText = styled.span`
   font-weight: bold;
 `;
 
+const RegularText = styled.span`
+  font-weight: normal;
+`;
+
 const StartButton = styled(OrangeButton)`
-  margin-top: 100px;
+  margin-top: 50px; // Adjust as needed based on your design
   background-color: ${COLORS.primary};
   font-weight: bold;
   padding: 12px 20px 12px 20px;
@@ -39,13 +57,19 @@ function StartTrial() {
 
   return (
     <Container>
-      <Text>Task: {TASK_DESCRIPTION}</Text>
       <Text>
-        Task will be considered completed when you reach the PayNow QR code
-        screen.
+        <BoldText>Task: Pay for the following fees together via PayNow QR code:</BoldText>
+      </Text>
+      <List>
+        <ListItem><BoldText>Education Records System Tuition Fees ($4000.00)</BoldText></ListItem>
+        <ListItem><BoldText>Library Fees ($2.00)</BoldText></ListItem>
+        <ListItem><BoldText>Student Housing Fees ($3000.00)</BoldText></ListItem>
+      </List>
+      <Text>
+        Task will be considered completed when you reach the PayNow QR code screen.
       </Text>
       <Text>
-        This is a timed experiment. When you are ready, click “Start Trial”.
+        <RegularText>This is a timed experiment.</RegularText> <BoldText>When you are ready, click “Start Trial”.</BoldText>
       </Text>
       <StartButton onClick={navToAccountDashboard}>Start Trial</StartButton>
     </Container>
