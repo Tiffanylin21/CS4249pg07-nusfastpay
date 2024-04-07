@@ -3,25 +3,27 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Body, TextContainer, Title } from "../../Utils/StyledComponents";
 import { OrangeButton } from "../../Utils/components/OrangeButton";
 import CartBar from "../../Utils/components/CartBar";
+import useClickTracker from '../../Utils/methods/useClickTracker';
 
 function CustomerDetails() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { cart, ivConfig } = location.state;
+  const { cart, ivConfig, startTime } = location.state;
+  const totalClicks = useClickTracker();
   const EMAIL = "marylim@gmail.com";
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    navigate("/qr-code", { state: { cart, ivConfig } });
+    navigate("/qr-code", { state: { cart, ivConfig, startTime, totalClicks } });
   };
 
   // Handler for the Back button
   const handleBack = () => {
-    navigate("/payment-options", { state: { cart, ivConfig } });
+    navigate("/payment-options", { state: { cart, ivConfig, startTime } });
   };
 
   const navToShoppingCart = () => {
-    navigate("/shopping-cart", { state: { cart, ivConfig } });
+    navigate("/shopping-cart", { state: { cart, ivConfig, startTime } });
   };
 
   return (

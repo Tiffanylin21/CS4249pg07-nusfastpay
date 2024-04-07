@@ -35,6 +35,7 @@ function StartScreen() {
         accessibilityOfPriceInfo: accessibilityOfPriceInfo,
         paymentCardSize: paymentCardSize,
         trial: trial,
+        ivConfigCode: ivConfigCode, // Include the raw config code
       };
       navigate("/start-trial", { state: { ivConfig } });
     } else {
