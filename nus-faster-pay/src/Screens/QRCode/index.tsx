@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import payLahImage from "./images/pay_lah.jpg"; // Import the image correctly
 import { COLORS } from "../../Utils/Colors";
-import { OrangeButton } from "../../Utils/components/OrangeButton";
 import { useLocation, useNavigate  } from "react-router-dom";
 import { calculateTotal } from "../../Utils/methods/CartMethods";
 import axios from 'axios'; // You'd need to install axios or use a different method to make HTTP requests.
@@ -10,6 +9,7 @@ import { FilledOrangeButton } from '../../Utils/components/FilledOrangeButton';
 function QRCode() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isDataSent, setIsDataSent] = useState(false);
   const { cart, ivConfig, startTime, totalClicks: initialTotalClicks } = location.state;
   const EMAIL = "marylim@gmail.com";
 
@@ -18,18 +18,19 @@ function QRCode() {
   };
 
   useEffect(() => {
-    if (startTime) {
+    if (!isDataSent) {
       const endTime = new Date();
       const totalTimeTaken = endTime.getTime() - new Date(startTime).getTime();
       const totalTimeTakenInSeconds = totalTimeTaken / 1000;
-  
-      axios.post('http://localhost:5000/updateSheet', {
+
+      axios.post("https://sheet.best/api/sheets/d440fae0-794c-432d-a60e-de5e9ab17512", {
         configCode: ivConfig.ivConfigCode, // Add this line to include the ivConfigCode
         totalClicks: initialTotalClicks,
         totalTimeTakenInSeconds: totalTimeTakenInSeconds,
       })
       .then(response => {
         console.log('Sheet updated successfully', response);
+        setIsDataSent(true);
       })
       .catch(error => {
         console.error('Error updating sheet', error);
@@ -37,7 +38,7 @@ function QRCode() {
   
       console.log(`Total time taken: ${totalTimeTakenInSeconds} seconds`);
     }
-  }, [startTime, initialTotalClicks, ivConfig.ivConfigCode]); // Make sure to add ivConfig.ivConfigCode to the dependency array
+  }, []); // Make sure to add ivConfig.ivConfigCode to the dependency array
   
   
   return (
